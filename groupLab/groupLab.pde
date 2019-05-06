@@ -22,7 +22,13 @@ class Rock extends Thing {
   }
 
   void display() {
-    ellipse(x,y,50,50);
+    for(int i = 0;i<50;i++){
+      float green = random(255);
+      float red = random(255);
+      float blue = random(255);
+      color c = color(red,green,blue);
+      stroke(c);
+      ellipse(x,y,i,i);
   }
 }
 
@@ -49,14 +55,19 @@ class Ball extends Thing implements Moveable {
   }
 
   void display() {
+    PImage p = new PImage();
+    p = loadImage("pokeball.png");
+    image(p,x,y);
     /* ONE PERSON WRITE THIS */
     ellipse(x,y,50,50);
   }
 
   void move() {
     /* ONE PERSON WRITE THIS (Jawwad) */
-    x+= random(5);
-    y+= random(5);
+    int mx = random(-1,1); //random cardinal direction
+    int my = random(-1,1);//random cardinal direction
+    x+= mx * random(-100,100);
+    y+= my * random(-80,80);
     
   }
 }
