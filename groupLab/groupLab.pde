@@ -53,12 +53,12 @@ class Ball extends Thing implements Moveable {
   Ball(float x, float y) {
     PImage p = new PImage();
     p = loadImage("pokeball.png");
+    p.resize(50,50);
     super(x, y);
   }
 
   void display() {
-    //p.resize(50,50);
-    //image(p,x,y);
+    image(p,x,y);
     /* ONE PERSON WRITE THIS */
     ellipse(x,y,50,50);
   }
