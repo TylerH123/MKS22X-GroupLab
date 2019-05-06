@@ -31,6 +31,7 @@ class Rock extends Thing {
       ellipse(x,y,i,i);
   }
 }
+}
 
 public class LivingRock extends Rock implements Moveable {
   LivingRock(float x, float y) {
@@ -59,8 +60,8 @@ class Ball extends Thing implements Moveable {
 
   void move() {
     /* ONE PERSON WRITE THIS (Jawwad) */
-    int mx = random(-1,1); //random cardinal direction
-    int my = random(-1,1);//random cardinal direction
+    float mx = random(-1,1); //random cardinal direction
+    float my = random(-1,1);//random cardinal direction
     x+= mx * random(-100,100);
     y+= my * random(-80,80);
     
