@@ -22,7 +22,13 @@ class Rock extends Thing {
   }
 
   void display() {
-    ellipse(x,y,50,50);
+    for(int i = 0;i<50;i++){
+      float green = random(255);
+      float red = random(255);
+      float blue = random(255);
+      color c = color(red,green,blue);
+      stroke(c);
+      ellipse(x,y,i,i);
   }
 }
 
