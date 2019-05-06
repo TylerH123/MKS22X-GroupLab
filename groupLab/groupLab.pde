@@ -31,7 +31,8 @@ public class LivingRock extends Rock implements Moveable {
     super(x, y);
   }
   void move() {
-    /* ONE PERSON WRITE THIS */
+    x+=random(-100,100);
+    y+=random(-80,80);
   }
 }
 
@@ -49,7 +50,10 @@ class Ball extends Thing implements Moveable {
   }
 
   void move() {
-    /* ONE PERSON WRITE THIS */
+    /* ONE PERSON WRITE THIS (Jawwad) */
+    x+= random(5);
+    y+= random(5);
+    
   }
 }
 
