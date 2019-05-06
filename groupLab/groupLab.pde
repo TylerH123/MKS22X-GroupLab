@@ -22,7 +22,7 @@ class Rock extends Thing {
   }
 
   void display() {
-    /* ONE PERSON WRITE THIS */
+    ellipse(x,y,50,50);
   }
 }
 
@@ -49,8 +49,10 @@ class Ball extends Thing implements Moveable {
 
   void move() {
     /* ONE PERSON WRITE THIS (Jawwad) */
-    x+= random(-100,100);
-    y+= random(-80,80);
+    int mx = random(-1,1); //random cardinal direction
+    int my = random(-1,1);//random cardinal direction
+    x+= mx * random(-100,100);
+    y+= my * random(-80,80);
     
   }
 }
