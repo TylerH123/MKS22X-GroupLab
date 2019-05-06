@@ -42,6 +42,8 @@ class Ball extends Thing implements Moveable {
   }
 
   void display() {
+    PImage p = new PImage();
+    p = loadImage("pokeball.png");
     /* ONE PERSON WRITE THIS */
     ellipse(x,y,50,50);
   }
