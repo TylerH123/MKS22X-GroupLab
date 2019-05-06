@@ -51,15 +51,14 @@ public class LivingRock extends Rock implements Moveable {
 
 class Ball extends Thing implements Moveable {
   Ball(float x, float y) {
-
+    PImage p = new PImage();
+    p = loadImage("pokeball.png");
     super(x, y);
   }
 
   void display() {
-    PImage p = new PImage();
-    p = loadImage("pokeball.png");
-    p.resize(50,50);
-    image(p,x,y);
+    //p.resize(50,50);
+    //image(p,x,y);
     /* ONE PERSON WRITE THIS */
     ellipse(x,y,50,50);
   }
