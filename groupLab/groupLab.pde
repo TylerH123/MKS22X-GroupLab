@@ -82,19 +82,24 @@ class Ball extends Thing implements Moveable {
   int direction;
   int radius;
   int shapeC;
+  int randColorR,randColorG,randColorB; 
   Ball(float x, float y) {
     super(x, y);
     img.resize(50, 50);
     radius = (int) random(10);
     direction = (int) random(2); //1 will be clockwise, 0 counterclockwise
     shapeC = (int) random(3); //0 is circle, 1 is horizontal ellipse, 2 is vertical
+    randColorR = (int)random(255);
+    randColorG = (int)random(255);
+    randColorB = (int)random(255);
   }
   void complex() {
-    ellipse(x, y, 50, 50);
     rectMode(CENTER);
     rect(x, y, 20, 50);
+    rect(x, y, 50, 20);
   }
   void display() {
+    fill(randColorR,randColorG,randColorB);
     if (shapeC == 0) image(img, x, y);
     if (shapeC == 1) ellipse(x, y, 50, 50);
     if (shapeC == 2) complex();
