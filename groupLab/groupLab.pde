@@ -93,12 +93,17 @@ class Ball extends Thing implements Moveable {
 
   void move() {
     /* ONE PERSON WRITE THIS (Jawwad) */
-    float mx = random(-1, 1); //random cardinal direction
-    float my = random(-1, 1);//random cardinal direction
-    x+= mx * random(-100, 100);
-    y+= my * random(-80, 80);
+    int[] mx= {0, 1, 1, 1, 0, -1, -1, -1};
+    int[] my = {1, 1, 0, -1, -1, -1, 0, 1};
+    //clockwise circle/spiral!
+    int i = (int) random(8);
+    if (x < width && y < height) {
+      x += mx[i] * width/10;
+      y += my[i] * height/10;
+    }
   }
 }
+
 
 /*DO NOT EDIT THE REST OF THIS */
 
