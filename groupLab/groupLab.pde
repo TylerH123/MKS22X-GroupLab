@@ -85,7 +85,7 @@ class Ball extends Thing implements Moveable {
   Ball(float x, float y) {
     super(x, y);
     img.resize(50, 50);
-    radius = (int) random(10);
+    radius = (int) random(1,11);
     direction = (int) random(2); //1 will be clockwise, 0 counterclockwise
     shapeC = (int) random(3); //0 is circle, 1 is horizontal ellipse, 2 is vertical
   }
