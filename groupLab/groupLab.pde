@@ -81,12 +81,14 @@ class Ball extends Thing implements Moveable {
   PImage p = new PImage();
   int direction;
   int radius;
+  int shapeC;
   Ball(float x, float y) {
     super(x, y);
     p = loadImage("pokeball.png");
     p.resize(50, 50);
     radius = (int) random(10);
     direction = (int) random(2); //1 will be clockwise, 0 counterclockwise
+    shapeC = (int) random(3); //0 is circle, 1 is horizontal ellipse, 2 is vertical
   }
 
   void display() {
@@ -107,12 +109,28 @@ class Ball extends Thing implements Moveable {
     //clockwise circle
     float t = millis()/1000.0;
     if ( x < width && y < height) {
-      if (direction == 0) {
-        x+= -1 * radius * cos(t);
-      }else {
-        x += radius*cos(t);
+      if (shapeC == 0) {
+        if (direction == 0) {
+          x+= -1 * radius * cos(t);
+        } else {
+          x += radius*cos(t);
+        }
+        y += radius*sin(t);
+      } else if (shapeC == 1) {
+        if (direction == 0) {
+          x+= -1 * radius * cos(t);
+        } else {
+          x+= radius * cos(t);
+        }
+        y += radius/2 * sin(t);
+      } else {
+        if (direction == 0) {
+          x += -1 * radius/2 * cos(t);
+        } else {
+          x += radius/2 * cos(t);
+        }
+        y += radius * sin(t);
       }
-      y += radius*sin(t);
     }
   }
 }
