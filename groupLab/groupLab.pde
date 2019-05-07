@@ -105,7 +105,11 @@ class Ball extends Thing implements Moveable {
     if (shapeC == 2) complex();
     /* ONE PERSON WRITE THIS */
   }
-
+  void bounce(){
+    if (x >= width || x <= 0 || y <=0 || y >= height){
+      radius *= -1;  
+    }
+  }
   void move() {
     /* ONE PERSON WRITE THIS (Jawwad) */
     /*int[] mx= {0, 1, 1, 1, 0, -1, -1, -1};
