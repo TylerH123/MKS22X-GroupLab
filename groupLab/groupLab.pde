@@ -17,20 +17,32 @@ abstract class Thing implements Displayable {
 }
 
 class Rock extends Thing {
+  PImage p;
   Rock(float x, float y) {
     super(x, y);
+    p= loadImage("Dumb_rock_official.png");
+    p.resize(50,50);
   }
 
+  /*void display() {
+   float green = 100;
+   float red =   200;
+   float blue =  100;
+   for (float i = 50; i>0; i-=0.5) {
+   color c = color(red, green, blue);
+   fill(c);
+   ellipse(x, y, i, i);
+   ellipse(x + random(10), y+random(10), i, i);
+   ellipse(x - random(10), y-random(10), i, i);
+   ellipse(x, y-random(10), i, i);
+   red-=1;
+   green+=6;
+   blue+=3;
+   }
+   }*/
   void display() {
-    for(int i = 0;i<50;i++){
-      float green = random(255);
-      float red = random(255);
-      float blue = random(255);
-      color c = color(red,green,blue);
-      stroke(c);
-      ellipse(x,y,i,i);
+    image(p,x,y);
   }
-}
 }
 
 public class LivingRock extends Rock implements Moveable {
@@ -38,11 +50,11 @@ public class LivingRock extends Rock implements Moveable {
     super(x, y);
   }
   void move() {
-    float dx = random(-1,1);
+    float dx = random(-1, 1);
     if (x+dx<width && x+dx>0) {
       x+=dx;
     }
-    float dy = random(-1,1);
+    float dy = random(-1, 1);
     if (y+dy<height && y+dy>0) {
       y+=dy;
     }
@@ -54,22 +66,21 @@ class Ball extends Thing implements Moveable {
   Ball(float x, float y) {
     super(x, y);
     p = loadImage("pokeball.png");
-    p.resize(50,50);
+    p.resize(50, 50);
   }
 
   void display() {
-    image(p,x,y);
+    image(p, x, y);
     /* ONE PERSON WRITE THIS */
-    ellipse(x,y,50,50);
+    ellipse(x, y, 50, 50);
   }
 
   void move() {
     /* ONE PERSON WRITE THIS (Jawwad) */
-    float mx = random(-1,1); //random cardinal direction
-    float my = random(-1,1);//random cardinal direction
-    x+= mx * random(-100,100);
-    y+= my * random(-80,80);
-    
+    float mx = random(-1, 1); //random cardinal direction
+    float my = random(-1, 1);//random cardinal direction
+    x+= mx * random(-100, 100);
+    y+= my * random(-80, 80);
   }
 }
 
