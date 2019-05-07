@@ -18,36 +18,52 @@ abstract class Thing implements Displayable {
 
 class Rock extends Thing {
   PImage p;
-  Rock(float x, float y) {
+  int mode;
+  Rock(float x, float y, int mod) {
     super(x, y);
     p= loadImage("Dumb_rock_official.png");
-    p.resize(50,50);
+    p.resize(50, 50);
+    mode = mod;
   }
-
-  /*void display() {
-   float green = 100;
-   float red =   200;
-   float blue =  100;
-   for (float i = 50; i>0; i-=0.5) {
-   color c = color(red, green, blue);
-   fill(c);
-   ellipse(x, y, i, i);
-   ellipse(x + random(10), y+random(10), i, i);
-   ellipse(x - random(10), y-random(10), i, i);
-   ellipse(x, y-random(10), i, i);
-   red-=1;
-   green+=6;
-   blue+=3;
-   }
-   }*/
   void display() {
-    image(p,x,y);
+    switch(mode) {
+    case 0:
+      simpleDisplay();
+      break;
+    case 1:
+      complexDisplay();
+      break;
+    default:
+      imageDisplay();
+    }
+  }
+  void simpleDisplay() {
+    ellipse(x, y, 50, 50);
+  }
+  void complexDisplay() {
+    float green = 100;
+    float red =   200;
+    float blue =  100;
+    for (float i = 50; i>0; i-=0.5) {
+      color c = color(red, green, blue);
+      fill(c);
+      ellipse(x, y, i, i);
+      ellipse(x + random(10), y+random(10), i, i);
+      ellipse(x - random(10), y-random(10), i, i);
+      ellipse(x, y-random(10), i, i);
+      red-=1;
+      green+=6;
+      blue+=3;
+    }
+  }
+  void imageDisplay() {
+    image(p, x, y);
   }
 }
 
 public class LivingRock extends Rock implements Moveable {
-  LivingRock(float x, float y) {
-    super(x, y);
+  LivingRock(float x, float y, int mod) {
+    super(x, y, mod);
   }
   void move() {
     float dx = random(-1, 1);
@@ -98,11 +114,11 @@ void setup() {
     Ball b = new Ball(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(b);
     thingsToMove.add(b);
-    Rock r = new Rock(50+random(width-100), 50+random(height-100));
+    Rock r = new Rock(50+random(width-100), 50+random(height-100), (int) random(3));
     thingsToDisplay.add(r);
   }
   for (int i = 0; i < 3; i++) {
-    LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100));
+    LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100), (int) random(3));
     thingsToDisplay.add(m);
     thingsToMove.add(m);
   }
