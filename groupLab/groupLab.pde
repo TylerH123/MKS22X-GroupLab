@@ -17,12 +17,16 @@ abstract class Thing implements Displayable {
 }
 
 class Rock extends Thing {
-  PImage p;
+  PImage beauty;
+  PImage ugly;
   int mode;
   Rock(float x, float y, int mod) {
     super(x, y);
-    p= loadImage("Dumb_rock_official.png");
-    p.resize(50, 50);
+    beauty = loadImage("beautyrock.jpg");
+    beauty.resize(50, 50);
+    ugly = loadImage("uglyrock.jpeg");
+    ugly.resize(50, 50);
+    
     mode = mod;
   }
   void display() {
