@@ -79,12 +79,12 @@ public class LivingRock extends Rock implements Moveable {
 
 class Ball extends Thing implements Moveable {
   PImage p = new PImage();
+  p = loadImage("pokeball.png");
   int direction;
   int radius;
   int shapeC;
   Ball(float x, float y) {
     super(x, y);
-    p = loadImage("pokeball.png");
     p.resize(50, 50);
     radius = (int) random(10);
     direction = (int) random(2); //1 will be clockwise, 0 counterclockwise
