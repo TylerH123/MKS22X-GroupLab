@@ -78,23 +78,27 @@ public class LivingRock extends Rock implements Moveable {
 }
 
 class Ball extends Thing implements Moveable {
-  PImage p = new PImage();
+  PImage img = loadImage("pokeball.png");
   int direction;
   int radius;
   int shapeC;
   Ball(float x, float y) {
     super(x, y);
-    p = loadImage("pokeball.png");
-    p.resize(50, 50);
+    img.resize(50, 50);
     radius = (int) random(10);
     direction = (int) random(2); //1 will be clockwise, 0 counterclockwise
     shapeC = (int) random(3); //0 is circle, 1 is horizontal ellipse, 2 is vertical
   }
-
-  void display() {
-    image(p, x, y);
-    /* ONE PERSON WRITE THIS */
+  void complex() {
     ellipse(x, y, 50, 50);
+    rectMode(CENTER);
+    rect(x, y, 20, 50);
+  }
+  void display() {
+    if (shapeC == 0) image(img, x, y);
+    if (shapeC == 1) ellipse(x, y, 50, 50);
+    if (shapeC == 2) complex();
+    /* ONE PERSON WRITE THIS */
   }
 
   void move() {
