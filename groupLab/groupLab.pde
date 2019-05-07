@@ -12,7 +12,7 @@ abstract class Thing implements Displayable {
   Thing(float x, float y) {
     this.x = x;
     this.y = y;
-  }
+  } 
   abstract void display();
 }
 
