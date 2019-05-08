@@ -1,6 +1,6 @@
 # MKS22X-GroupLab
 5/06/19
-    Caleb Kahan- Wrote the Rock class- Methods Include- 
+    Caleb Kahan- Wrote the Rock class- Methods Include-
         -Simple Display
         -Complex Display
         -Image Display
@@ -14,7 +14,7 @@
         -circular motion
         -elliptical motion (vertical and horizontal)
         -random motion in contained window (initial)
-    
+
 5/07/19
     Caleb Kahan + Brandon Cho (joined today from absence)
         -Rock Changes + Living Rock Changes (1+2+3)
@@ -27,5 +27,6 @@
     Mihad was absent
 
 5/08/19
-
-  
+    Tyler Huang + Mohammad Jawwad
+      - radius changes due to time
+      - attempted bounce... nothing
