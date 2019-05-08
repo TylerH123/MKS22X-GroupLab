@@ -17,57 +17,51 @@ abstract class Thing implements Displayable {
 }
 
 class Rock extends Thing {
-  PImage beauty;
-  PImage ugly;
+  PImage p;
   int mode;
-  Rock(float x, float y, int mod) {
+  Rock(float x, float y, PImage p) {
     super(x, y);
-    beauty = loadImage("beautyrock.jpg");
-    beauty.resize(50, 50);
-    ugly = loadImage("uglyrock.jpeg");
-    ugly.resize(50, 50);
-    
-    mode = mod;
+    this.p=p;
   }
   void display() {
     switch(mode) {
-    case 0:
-      simpleDisplay();
-      break;
-    case 1:
-      complexDisplay();
-      break;
+      /*case 0:
+       simpleDisplay();
+       break;
+       case 1:
+       complexDisplay();
+       break;*/
     default:
       imageDisplay();
     }
   }
-  void simpleDisplay() {
-    ellipse(x, y, 50, 50);
-  }
-  void complexDisplay() {
-    float green = 100;
-    float red =   200;
-    float blue =  100;
-    for (float i = 50; i>0; i-=0.5) {
-      color c = color(red, green, blue);
-      fill(c);
-      ellipse(x, y, i, i);
-      ellipse(x + random(10), y+random(10), i, i);
-      ellipse(x - random(10), y-random(10), i, i);
-      ellipse(x, y-random(10), i, i);
-      red-=1;
-      green+=6;
-      blue+=3;
-    }
-  }
+  /*void simpleDisplay() {
+   ellipse(x, y, 50, 50);
+   }
+   void complexDisplay() {
+   float green = 100;
+   float red =   200;
+   float blue =  100;
+   for (float i = 50; i>0; i-=0.5) {
+   color c = color(red, green, blue);
+   fill(c);
+   ellipse(x, y, i, i);
+   ellipse(x + random(10), y+random(10), i, i);
+   ellipse(x - random(10), y-random(10), i, i);
+   ellipse(x, y-random(10), i, i);
+   red-=1;
+   green+=6;
+   blue+=3;
+   }
+   }*/
   void imageDisplay() {
     image(p, x, y);
   }
 }
 
 public class LivingRock extends Rock implements Moveable {
-  LivingRock(float x, float y, int mod) {
-    super(x, y, mod);
+  LivingRock(float x, float y, PImage p) {
+    super(x, y, p);
   }
   void move() {
     float dx = random(-1, 1);
@@ -86,11 +80,11 @@ class Ball extends Thing implements Moveable {
   int direction;
   int radius;
   int shapeC;
-  int randColorR,randColorG,randColorB; 
+  int randColorR, randColorG, randColorB; 
   Ball(float x, float y) {
     super(x, y);
     img.resize(50, 50);
-    radius = (int) random(1,11);
+    radius = (int) random(1, 11);
     direction = (int) random(2); //1 will be clockwise, 0 counterclockwise
     shapeC = (int) random(3); //0 is circle, 1 is horizontal ellipse, 2 is vertical
     randColorR = (int)random(255);
@@ -103,15 +97,15 @@ class Ball extends Thing implements Moveable {
     rect(x, y, 50, 20);
   }
   void display() {
-    fill(randColorR,randColorG,randColorB);
+    fill(randColorR, randColorG, randColorB);
     if (shapeC == 0) image(img, x, y);
     if (shapeC == 1) ellipse(x, y, 50, 50);
     if (shapeC == 2) complex();
     /* ONE PERSON WRITE THIS */
   }
-  void bounce(){
-    if (x >= width || x <= 0 || y <=0 || y >= height){
-      radius *= -1;  
+  void bounce() {
+    if (x >= width || x <= 0 || y <=0 || y >= height) {
+      radius *= -1;
     }
   }
   void move() {
@@ -159,7 +153,12 @@ ArrayList<Displayable> thingsToDisplay;
 ArrayList<Moveable> thingsToMove;
 
 void setup() {
+  PImage beauty = loadImage("beautyrock.jpg");
+  beauty.resize(50, 50);
+  PImage ugly = loadImage("uglyrock.jpeg");
+  ugly.resize(50, 50);
   size(1000, 800);
+  PImage p;
 
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
@@ -167,11 +166,19 @@ void setup() {
     Ball b = new Ball(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(b);
     thingsToMove.add(b);
-    Rock r = new Rock(50+random(width-100), 50+random(height-100), (int) random(3));
+    int j =(int)(random(2));
+    if (j==0) {
+      p = beauty;
+    } else p = ugly;
+    Rock r = new Rock(50+random(width-100), 50+random(height-100), p);
     thingsToDisplay.add(r);
   }
   for (int i = 0; i < 3; i++) {
-    LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100), (int) random(3));
+    int j =(int)(random(2));
+    if (j==0) {
+      p = beauty;
+    } else p = ugly;
+    LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100), p);
     thingsToDisplay.add(m);
     thingsToMove.add(m);
   }
