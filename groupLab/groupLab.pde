@@ -89,17 +89,17 @@ public class LivingRock extends Rock implements Moveable {
 }
 
 class Ball extends Thing implements Moveable {
-  PImage img = loadImage("pokeball.png");
+  PImage img; 
   int direction;
   int radius;
   int shapeC;
   int randColorR, randColorG, randColorB; 
-  Ball(float x, float y) {
+  Ball(float x, float y, PImage p) {
     super(x, y);
-    img.resize(50, 50);
+    img = p; 
     radius = (int) random(1, 11);
     direction = (int) random(2); //1 will be clockwise, 0 counterclockwise
-    shapeC = (int) random(3); //0 is circle, 1 is horizontal ellipse, 2 is vertical
+    shapeC = (int) random(3); //0 is image, 1 is ellipse, 2 is complex
     randColorR = (int)random(255);
     randColorG = (int)random(255);
     randColorB = (int)random(255);
@@ -117,10 +117,11 @@ class Ball extends Thing implements Moveable {
     /* ONE PERSON WRITE THIS */
   }
   void bounce() {
-    if (x >= width || x <= 0 || y <=0 || y >= height) {
-      radius *= -1;
-    }
+    if (direction == 0) direction = 1; //go in the opp direction
+    else direction = 0;
+    radius -= 2; 
   }
+
   void move() {
     /* ONE PERSON WRITE THIS (Jawwad) */
     /*int[] mx= {0, 1, 1, 1, 0, -1, -1, -1};
@@ -132,7 +133,10 @@ class Ball extends Thing implements Moveable {
      } elder randomized version*/
     //clockwise circle
     float t = millis()/1000.0;
-    if ( x < width && y < height) {
+    if ( x < width && y < height && x > 0 && y > 0) {
+       if (t == 10) {
+      radius += 3;
+    }
       if (shapeC == 0) {
         if (direction == 0) {
           x+= -1 * radius * cos(t);
@@ -146,7 +150,7 @@ class Ball extends Thing implements Moveable {
         } else {
           x+= radius * cos(t);
         }
-        y += radius/2 * sin(t);
+        y += radius/2 * sin(t)+random(2);
       } else {
         if (direction == 0) {
           x += -1 * radius/2 * cos(t);
@@ -155,16 +159,17 @@ class Ball extends Thing implements Moveable {
         }
         y += radius * sin(t);
       }
+    } else {
+      bounce();
     }
   }
 }
 
 
-/*DO NOT EDIT THE REST OF THIS */
 
-ArrayList<Displayable> thingsToDisplay;
-ArrayList<Moveable> thingsToMove;
+  /*DO NOT EDIT THE REST OF THIS */
 
+<<<<<<< HEAD
 void setup() {
   PImage beauty = loadImage("beautyrock.jpg");
   beauty.resize(50, 50);
@@ -174,33 +179,49 @@ void setup() {
   eyes.resize(35, 35);
   size(1000, 800);
   PImage p;
+=======
+  ArrayList<Displayable> thingsToDisplay;
+  ArrayList<Moveable> thingsToMove;
+>>>>>>> 4695652860fc5397eb4913b6dad42b477764b88a
 
-  thingsToDisplay = new ArrayList<Displayable>();
-  thingsToMove = new ArrayList<Moveable>();
-  for (int i = 0; i < 10; i++) {
-    Ball b = new Ball(50+random(width-100), 50+random(height-100));
-    thingsToDisplay.add(b);
-    thingsToMove.add(b);
-    int j =(int)(random(2));
-    if (j==0) {
-      p = beauty;
-    } else p = ugly;
-    Rock r = new Rock(50+random(width-100), 50+random(height-100), p);
-    thingsToDisplay.add(r);
+  void setup() {
+    PImage beauty = loadImage("beautyrock.jpg");
+    beauty.resize(50, 50);
+    PImage ugly = loadImage("uglyrock.jpeg");
+    ugly.resize(50, 50);
+    PImage eyes = loadImage("eyeballs.png");
+    eyes.resize(35, 35);
+    size(1000, 800);
+    PImage p;
+    PImage poke = loadImage("pokeball.png"); 
+    poke.resize(50, 50);
+    thingsToDisplay = new ArrayList<Displayable>();
+    thingsToMove = new ArrayList<Moveable>();
+    for (int i = 0; i < 10; i++) {
+      Ball b = new Ball(50+random(width-100), 50+random(height-100), poke);
+      thingsToDisplay.add(b);
+      thingsToMove.add(b);
+      int j =(int)(random(2));
+      if (j==0) {
+        p = beauty;
+      } else p = ugly;
+      Rock r = new Rock(50+random(width-100), 50+random(height-100), p);
+      thingsToDisplay.add(r);
+    }
+    for (int i = 0; i < 3; i++) {
+      int j =(int)(random(2));
+      if (j==0) {
+        p = beauty;
+      } else p = ugly;
+      LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100), p, eyes);
+      thingsToDisplay.add(m);
+      thingsToMove.add(m);
+    }
   }
-  for (int i = 0; i < 3; i++) {
-    int j =(int)(random(2));
-    if (j==0) {
-      p = beauty;
-    } else p = ugly;
-    LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100), p, eyes);
-    thingsToDisplay.add(m);
-    thingsToMove.add(m);
-  }
-}
-void draw() {
-  background(255);
+  void draw() {
+    background(255);
 
+<<<<<<< HEAD
   for (Displayable thing : thingsToDisplay) {
     thing.display();
   }
@@ -208,3 +229,12 @@ void draw() {
     thing.move();
   }
 }
+=======
+    for (Displayable thing : thingsToDisplay) {
+      thing.display();
+    }
+    for (Moveable thing : thingsToMove) {
+      thing.move();
+    }
+  }
+>>>>>>> 4695652860fc5397eb4913b6dad42b477764b88a
