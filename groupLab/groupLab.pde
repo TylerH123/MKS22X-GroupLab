@@ -8,7 +8,8 @@ interface Moveable {
 
 abstract class Thing implements Displayable {
   float x, y;//Position of the Thing
-
+  PImage img;
+  PImage img2;
   Thing(float x, float y) {
     this.x = x;
     this.y = y;
@@ -17,11 +18,10 @@ abstract class Thing implements Displayable {
 }
 
 class Rock extends Thing {
-  PImage p;
   int mode;
   Rock(float x, float y, PImage p) {
     super(x, y);
-    this.p=p;
+    this.img=p;
   }
   void display() {
     switch(mode) {
@@ -55,15 +55,14 @@ class Rock extends Thing {
    }
    }*/
   void imageDisplay() {
-    image(p, x, y);
+    image(img, x, y);
   }
 }
 
 public class LivingRock extends Rock implements Moveable {
-  PImage eyes;
   LivingRock(float x, float y, PImage p, PImage eye) {
     super(x, y, p);
-    eyes = eye;
+    this.img2 = eye;
   }
   void move() {
     int speed=1;
@@ -84,19 +83,18 @@ public class LivingRock extends Rock implements Moveable {
   }
   void display() {
     super.display();
-    image(eyes, x, y);
+    image(img2, x, y);
   }
 }
 
-class Ball extends Thing implements Moveable {
-  PImage img; 
+class Ball extends Thing implements Moveable { 
   int direction;
   int radius;
   int shapeC;
   int randColorR, randColorG, randColorB; 
   Ball(float x, float y, PImage p) {
     super(x, y);
-    img = p; 
+    this.img = p; 
     radius = (int) random(1, 11);
     direction = (int) random(2); //1 will be clockwise, 0 counterclockwise
     shapeC = (int) random(3); //0 is image, 1 is ellipse, 2 is complex
