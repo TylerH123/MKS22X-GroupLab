@@ -60,8 +60,10 @@ class Rock extends Thing {
 }
 
 public class LivingRock extends Rock implements Moveable {
-  LivingRock(float x, float y, PImage p) {
+  PImage eyes;
+  LivingRock(float x, float y, PImage p, PImage eye) {
     super(x, y, p);
+    eyes = eye;
   }
   void move() {
     float dx = random(-1, 1);
@@ -72,6 +74,10 @@ public class LivingRock extends Rock implements Moveable {
     if (y+dy<height && y+dy>0) {
       y+=dy;
     }
+  }
+  void display(){
+    super.display();
+    image(eyes,x,y);
   }
 }
 
@@ -157,6 +163,8 @@ void setup() {
   beauty.resize(50, 50);
   PImage ugly = loadImage("uglyrock.jpeg");
   ugly.resize(50, 50);
+  PImage eyes = loadImage("eyeballs.png");
+  eyes.resize(35,35);
   size(1000, 800);
   PImage p;
 
@@ -178,7 +186,7 @@ void setup() {
     if (j==0) {
       p = beauty;
     } else p = ugly;
-    LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100), p);
+    LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100), p, eyes);
     thingsToDisplay.add(m);
     thingsToMove.add(m);
   }
