@@ -129,25 +129,25 @@ class Ball extends Thing implements Moveable {
     if ( x < width && y < height) {
       if (shapeC == 0) {
         if (direction == 0) {
-          x+= -1 * radius * cos(t);
+          x+= -1 * radius * cos(t) +random(2);
         } else {
-          x += radius*cos(t);
+          x += radius*cos(t) +random(2);
         }
         y += radius*sin(t);
       } else if (shapeC == 1) {
         if (direction == 0) {
-          x+= -1 * radius * cos(t);
+          x+= -1 * radius * cos(t) +random(2);
         } else {
-          x+= radius * cos(t);
+          x+= radius * cos(t) +random(2);
         }
-        y += radius/2 * sin(t);
+        y += radius/2 * sin(t)+random(2);
       } else {
         if (direction == 0) {
-          x += -1 * radius/2 * cos(t);
+          x += -1 * radius/2 * cos(t)+random(2);
         } else {
-          x += radius/2 * cos(t);
+          x += radius/2 * cos(t)+random(2);
         }
-        y += radius * sin(t);
+        y += radius * sin(t)+random(2);
       }
     }
   }
