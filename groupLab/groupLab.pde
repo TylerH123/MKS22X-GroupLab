@@ -82,17 +82,18 @@ public class LivingRock extends Rock implements Moveable {
 }
 
 class Ball extends Thing implements Moveable {
-  PImage img = loadImage("pokeball.png");
+  PImage img; 
   int direction;
   int radius;
   int shapeC;
   int randColorR, randColorG, randColorB; 
-  Ball(float x, float y) {
+  Ball(float x, float y, PImage p) {
     super(x, y);
+    img = p; 
     img.resize(50, 50);
     radius = (int) random(1, 11);
     direction = (int) random(2); //1 will be clockwise, 0 counterclockwise
-    shapeC = (int) random(3); //0 is circle, 1 is horizontal ellipse, 2 is vertical
+    shapeC = (int) random(3); //0 is image, 1 is ellipse, 2 is complex
     randColorR = (int)random(255);
     randColorG = (int)random(255);
     randColorB = (int)random(255);
@@ -167,11 +168,11 @@ void setup() {
   eyes.resize(35,35);
   size(1000, 800);
   PImage p;
-
+  PImage poke = loadImage("pokeball.png"); 
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   for (int i = 0; i < 10; i++) {
-    Ball b = new Ball(50+random(width-100), 50+random(height-100));
+    Ball b = new Ball(50+random(width-100), 50+random(height-100), poke);
     thingsToDisplay.add(b);
     thingsToMove.add(b);
     int j =(int)(random(2));
