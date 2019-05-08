@@ -90,7 +90,6 @@ class Ball extends Thing implements Moveable {
   Ball(float x, float y, PImage p) {
     super(x, y);
     img = p; 
-    img.resize(50, 50);
     radius = (int) random(1, 11);
     direction = (int) random(2); //1 will be clockwise, 0 counterclockwise
     shapeC = (int) random(3); //0 is image, 1 is ellipse, 2 is complex
@@ -111,8 +110,9 @@ class Ball extends Thing implements Moveable {
     /* ONE PERSON WRITE THIS */
   }
   void bounce() {
-    if (direction == 0) direction = 1;
+    if (direction == 0) direction = 1; //go in the opp direction
     else direction = 0;
+    radius -= 2; 
   }
 
   void move() {
@@ -126,7 +126,10 @@ class Ball extends Thing implements Moveable {
      } elder randomized version*/
     //clockwise circle
     float t = millis()/1000.0;
-    if ( x < width && y < height) {
+    if ( x < width && y < height && x > 0 && y > 0) {
+       if (t == 10) {
+      radius += 3;
+    }
       if (shapeC == 0) {
         if (direction == 0) {
           x+= -1 * radius * cos(t);
@@ -172,6 +175,7 @@ class Ball extends Thing implements Moveable {
     size(1000, 800);
     PImage p;
     PImage poke = loadImage("pokeball.png"); 
+    poke.resize(50, 50);
     thingsToDisplay = new ArrayList<Displayable>();
     thingsToMove = new ArrayList<Moveable>();
     for (int i = 0; i < 10; i++) {
