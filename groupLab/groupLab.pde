@@ -118,8 +118,39 @@ class Ball extends Thing implements Moveable {
   }
   void bounce() {
     if (direction == 0) direction = 1; //go in the opp direction
-    else direction = 0;
-    radius -= 2;
+    else if (direction == 1) direction = 0;
+    hM();
+  }
+
+  void hM() {
+    float t = millis()/1000.0;
+    //shapeC = circlular path
+    if (shapeC == 0) {
+      if (direction == 0) {
+        x+= -1 * radius * cos(t) + random(2);
+      } else {
+        x += radius*cos(t) + random(2);
+      }
+      y += radius*sin(t) + random(2);
+    } 
+    //shapeC = horizontal elliptical path
+    else if (shapeC == 1) {
+      if (direction == 0) {
+        x+= -1 * radius * cos(t) + random(2);
+      } else {
+        x+= radius * cos(t)+ random(2);
+      }
+      y += radius/2 * sin(t)+random(2) + random(2);
+    }
+    //shapeC = veritcal elliptical path
+    else {
+      if (direction == 0) {
+        x += -1 * radius/2 * cos(t) + random(2);
+      } else {
+        x += radius/2 * cos(t) + random(2);
+      }
+      y += radius * sin(t) + random(2);
+    }
   }
 
   void move() {
@@ -132,36 +163,9 @@ class Ball extends Thing implements Moveable {
      y += my[i] * height/10;
      } elder randomized version*/
     //clockwise circle
-    float t = millis()/1000.0;
-    if ( x < width && y < height && x > 0 && y > 0) {
-      if (t == 10) {
-        radius += 3;
-      }
-      if (shapeC == 0) {
-        if (direction == 0) {
-          x+= -1 * radius * cos(t);
-        } else {
-          x += radius*cos(t);
-        }
-        y += radius*sin(t);
-      } else if (shapeC == 1) {
-        if (direction == 0) {
-          x+= -1 * radius * cos(t);
-        } else {
-          x+= radius * cos(t);
-        }
-        y += radius/2 * sin(t)+random(2);
-      } else {
-        if (direction == 0) {
-          x += -1 * radius/2 * cos(t);
-        } else {
-          x += radius/2 * cos(t);
-        }
-        y += radius * sin(t);
-      }
-    } else {
-      bounce();
-    }
+    if ( x+50 <= width && y+50 <= height && x >= 0 && y >= 0) { //basically when inside range
+      hM();
+    } else bounce();
   }
 }
 
