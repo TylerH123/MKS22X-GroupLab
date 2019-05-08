@@ -66,18 +66,25 @@ public class LivingRock extends Rock implements Moveable {
     eyes = eye;
   }
   void move() {
-    float dx = random(-1, 1);
-    if (x+dx<width && x+dx>0) {
+    int speed=1;
+    int dir=1;
+    float dx = speed*dir;
+    boolean collide = false;
+    if (x+dx<width-25 && x+dx>25) {
       x+=dx;
+    } else {
+      dir*=-1;
     }
-    float dy = random(-1, 1);
-    if (y+dy<height && y+dy>0) {
+    float dy = speed*dir;
+    if (y+dy<height-25 && y+dy>25) {
       y+=dy;
+    } else {
+      dir*=-1;
     }
   }
-  void display(){
+  void display() {
     super.display();
-    image(eyes,x,y);
+    image(eyes, x, y);
   }
 }
 
@@ -164,7 +171,7 @@ void setup() {
   PImage ugly = loadImage("uglyrock.jpeg");
   ugly.resize(50, 50);
   PImage eyes = loadImage("eyeballs.png");
-  eyes.resize(35,35);
+  eyes.resize(35, 35);
   size(1000, 800);
   PImage p;
 
