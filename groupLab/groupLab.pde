@@ -117,106 +117,119 @@ class Ball extends Thing implements Moveable {
     /* ONE PERSON WRITE THIS */
   }
   void bounce() {
-    if (direction == 0) direction = 1; //go in the opp direction
-    else if (direction == 1) direction = 0;
+    if (shapeC == 0) {
+      if (x +50 >= width) x-= random(50,100);
+      if (y + 50 >= height) y-=random(50,100);
+      if (x <= 0) x+= random(10,100);
+      if (y <= 0) y+=random(10,100);
+    }
+    else {
+      if (x >= width) x-= random(10,100);
+      if (y >= height) y -= random(10,100);
+      if (x <= 0) x+= random(10,100);
+      if (y <= 0) y+= random(10,100);
+    }
+    //if (direction == 0) direction = 1;
+    //if (direction == 1) direction = 0;
     hM();
   }
 
-  void hM() {
-    float t = millis()/1000.0;
-    //shapeC = circlular path
-    if (shapeC == 0) {
-      if (direction == 0) {
-        x+= -1 * radius * cos(t) + random(2);
-      } else {
-        x += radius*cos(t) + random(2);
+    void hM() {
+      float t = millis()/1000.0;
+      //shapeC = circlular path
+      if (shapeC == 0) {
+        if (direction == 0) {
+          x+= -1 * radius * cos(t) + random(2);
+        } else {
+          x += radius*cos(t) + random(2);
+        }
+        y += radius*sin(t) + random(2);
+      } 
+      //shapeC = horizontal elliptical path
+      else if (shapeC == 1) {
+        if (direction == 0) {
+          x+= -1 * radius * cos(t) + random(2);
+        } else {
+          x+= radius * cos(t)+ random(2);
+        }
+        y += radius/2 * sin(t)+random(2) + random(2);
       }
-      y += radius*sin(t) + random(2);
-    } 
-    //shapeC = horizontal elliptical path
-    else if (shapeC == 1) {
-      if (direction == 0) {
-        x+= -1 * radius * cos(t) + random(2);
-      } else {
-        x+= radius * cos(t)+ random(2);
+      //shapeC = veritcal elliptical path
+      else {
+        if (direction == 0) {
+          x += -1 * radius/2 * cos(t) + random(2);
+        } else {
+          x += radius/2 * cos(t) + random(2);
+        }
+        y += radius * sin(t) + random(2);
       }
-      y += radius/2 * sin(t)+random(2) + random(2);
     }
-    //shapeC = veritcal elliptical path
-    else {
-      if (direction == 0) {
-        x += -1 * radius/2 * cos(t) + random(2);
-      } else {
-        x += radius/2 * cos(t) + random(2);
-      }
-      y += radius * sin(t) + random(2);
+
+    void move() {
+      /* ONE PERSON WRITE THIS (Jawwad) */
+      /*int[] mx= {0, 1, 1, 1, 0, -1, -1, -1};
+       int[] my = {1, 1, 0, -1, -1, -1, 0, 1};
+       int i = (int) random(8);
+       if (x < width && y < height) {
+       x += mx[i] * width/10;
+       y += my[i] * height/10;
+       } elder randomized version*/
+      //clockwise circle
+      if ( x >= 0 && y >= 0 && x<= width -50 && y<= height- 50) { //basically when inside range
+        hM();
+      } 
+      if (x + 50 >= width || y + 50 >= height || x <= 0 || y <= 0) bounce();
     }
   }
 
-  void move() {
-    /* ONE PERSON WRITE THIS (Jawwad) */
-    /*int[] mx= {0, 1, 1, 1, 0, -1, -1, -1};
-     int[] my = {1, 1, 0, -1, -1, -1, 0, 1};
-     int i = (int) random(8);
-     if (x < width && y < height) {
-     x += mx[i] * width/10;
-     y += my[i] * height/10;
-     } elder randomized version*/
-    //clockwise circle
-    if ( x+50 <= width && y+50 <= height && x >= 0 && y >= 0) { //basically when inside range
-      hM();
-    } else bounce();
+
+
+  /*DO NOT EDIT THE REST OF THIS */
+
+  ArrayList<Displayable> thingsToDisplay;
+  ArrayList<Moveable> thingsToMove;
+
+  void setup() {
+    PImage beauty = loadImage("beautyrock.jpg");
+    beauty.resize(50, 50);
+    PImage ugly = loadImage("uglyrock.jpeg");
+    ugly.resize(50, 50);
+    PImage eyes = loadImage("eyeballs.png");
+    eyes.resize(35, 35);
+    size(1000, 800);
+    PImage p;
+    PImage poke = loadImage("pokeball.png"); 
+    poke.resize(50, 50);
+    thingsToDisplay = new ArrayList<Displayable>();
+    thingsToMove = new ArrayList<Moveable>();
+    for (int i = 0; i < 10; i++) {
+      Ball b = new Ball(50+random(width-100), 50+random(height-100), poke);
+      thingsToDisplay.add(b);
+      thingsToMove.add(b);
+      int j =(int)(random(2));
+      if (j==0) {
+        p = beauty;
+      } else p = ugly;
+      Rock r = new Rock(50+random(width-100), 50+random(height-100), p);
+      thingsToDisplay.add(r);
+    }
+    for (int i = 0; i < 3; i++) {
+      int j =(int)(random(2));
+      if (j==0) {
+        p = beauty;
+      } else p = ugly;
+      LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100), p, eyes);
+      thingsToDisplay.add(m);
+      thingsToMove.add(m);
+    }
   }
-}
+  void draw() {
+    background(255);
 
-
-
-/*DO NOT EDIT THE REST OF THIS */
-
-ArrayList<Displayable> thingsToDisplay;
-ArrayList<Moveable> thingsToMove;
-
-void setup() {
-  PImage beauty = loadImage("beautyrock.jpg");
-  beauty.resize(50, 50);
-  PImage ugly = loadImage("uglyrock.jpeg");
-  ugly.resize(50, 50);
-  PImage eyes = loadImage("eyeballs.png");
-  eyes.resize(35, 35);
-  size(1000, 800);
-  PImage p;
-  PImage poke = loadImage("pokeball.png"); 
-  poke.resize(50, 50);
-  thingsToDisplay = new ArrayList<Displayable>();
-  thingsToMove = new ArrayList<Moveable>();
-  for (int i = 0; i < 10; i++) {
-    Ball b = new Ball(50+random(width-100), 50+random(height-100), poke);
-    thingsToDisplay.add(b);
-    thingsToMove.add(b);
-    int j =(int)(random(2));
-    if (j==0) {
-      p = beauty;
-    } else p = ugly;
-    Rock r = new Rock(50+random(width-100), 50+random(height-100), p);
-    thingsToDisplay.add(r);
+    for (Displayable thing : thingsToDisplay) {
+      thing.display();
+    }
+    for (Moveable thing : thingsToMove) {
+      thing.move();
+    }
   }
-  for (int i = 0; i < 3; i++) {
-    int j =(int)(random(2));
-    if (j==0) {
-      p = beauty;
-    } else p = ugly;
-    LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100), p, eyes);
-    thingsToDisplay.add(m);
-    thingsToMove.add(m);
-  }
-}
-void draw() {
-  background(255);
-
-  for (Displayable thing : thingsToDisplay) {
-    thing.display();
-  }
-  for (Moveable thing : thingsToMove) {
-    thing.move();
-  }
-}
