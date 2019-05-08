@@ -75,9 +75,9 @@ public class LivingRock extends Rock implements Moveable {
       y+=dy;
     }
   }
-  void display(){
+  void display() {
     super.display();
-    image(eyes,x,y);
+    image(eyes, x, y);
   }
 }
 
@@ -111,10 +111,10 @@ class Ball extends Thing implements Moveable {
     /* ONE PERSON WRITE THIS */
   }
   void bounce() {
-    if (x >= width || x <= 0 || y <=0 || y >= height) {
-      radius *= -1;
-    }
+    if (direction == 0) direction = 1;
+    else direction = 0;
   }
+
   void move() {
     /* ONE PERSON WRITE THIS (Jawwad) */
     /*int[] mx= {0, 1, 1, 1, 0, -1, -1, -1};
@@ -129,76 +129,79 @@ class Ball extends Thing implements Moveable {
     if ( x < width && y < height) {
       if (shapeC == 0) {
         if (direction == 0) {
-          x+= -1 * radius * cos(t) +random(2);
+          x+= -1 * radius * cos(t);
         } else {
-          x += radius*cos(t) +random(2);
+          x += radius*cos(t);
         }
         y += radius*sin(t);
       } else if (shapeC == 1) {
         if (direction == 0) {
-          x+= -1 * radius * cos(t) +random(2);
+          x+= -1 * radius * cos(t);
         } else {
-          x+= radius * cos(t) +random(2);
+          x+= radius * cos(t);
         }
         y += radius/2 * sin(t)+random(2);
       } else {
         if (direction == 0) {
-          x += -1 * radius/2 * cos(t)+random(2);
+          x += -1 * radius/2 * cos(t);
         } else {
-          x += radius/2 * cos(t)+random(2);
+          x += radius/2 * cos(t);
         }
-        y += radius * sin(t)+random(2);
+        y += radius * sin(t);
       }
+    } else {
+      bounce();
     }
   }
 }
 
 
-/*DO NOT EDIT THE REST OF THIS */
 
-ArrayList<Displayable> thingsToDisplay;
-ArrayList<Moveable> thingsToMove;
+  /*DO NOT EDIT THE REST OF THIS */
 
-void setup() {
-  PImage beauty = loadImage("beautyrock.jpg");
-  beauty.resize(50, 50);
-  PImage ugly = loadImage("uglyrock.jpeg");
-  ugly.resize(50, 50);
-  PImage eyes = loadImage("eyeballs.png");
-  eyes.resize(35,35);
-  size(1000, 800);
-  PImage p;
-  PImage poke = loadImage("pokeball.png"); 
-  thingsToDisplay = new ArrayList<Displayable>();
-  thingsToMove = new ArrayList<Moveable>();
-  for (int i = 0; i < 10; i++) {
-    Ball b = new Ball(50+random(width-100), 50+random(height-100), poke);
-    thingsToDisplay.add(b);
-    thingsToMove.add(b);
-    int j =(int)(random(2));
-    if (j==0) {
-      p = beauty;
-    } else p = ugly;
-    Rock r = new Rock(50+random(width-100), 50+random(height-100), p);
-    thingsToDisplay.add(r);
-  }
-  for (int i = 0; i < 3; i++) {
-    int j =(int)(random(2));
-    if (j==0) {
-      p = beauty;
-    } else p = ugly;
-    LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100), p, eyes);
-    thingsToDisplay.add(m);
-    thingsToMove.add(m);
-  }
-}
-void draw() {
-  background(255);
+  ArrayList<Displayable> thingsToDisplay;
+  ArrayList<Moveable> thingsToMove;
 
-  for (Displayable thing : thingsToDisplay) {
-    thing.display();
+  void setup() {
+    PImage beauty = loadImage("beautyrock.jpg");
+    beauty.resize(50, 50);
+    PImage ugly = loadImage("uglyrock.jpeg");
+    ugly.resize(50, 50);
+    PImage eyes = loadImage("eyeballs.png");
+    eyes.resize(35, 35);
+    size(1000, 800);
+    PImage p;
+    PImage poke = loadImage("pokeball.png"); 
+    thingsToDisplay = new ArrayList<Displayable>();
+    thingsToMove = new ArrayList<Moveable>();
+    for (int i = 0; i < 10; i++) {
+      Ball b = new Ball(50+random(width-100), 50+random(height-100), poke);
+      thingsToDisplay.add(b);
+      thingsToMove.add(b);
+      int j =(int)(random(2));
+      if (j==0) {
+        p = beauty;
+      } else p = ugly;
+      Rock r = new Rock(50+random(width-100), 50+random(height-100), p);
+      thingsToDisplay.add(r);
+    }
+    for (int i = 0; i < 3; i++) {
+      int j =(int)(random(2));
+      if (j==0) {
+        p = beauty;
+      } else p = ugly;
+      LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100), p, eyes);
+      thingsToDisplay.add(m);
+      thingsToMove.add(m);
+    }
   }
-  for (Moveable thing : thingsToMove) {
-    thing.move();
+  void draw() {
+    background(255);
+
+    for (Displayable thing : thingsToDisplay) {
+      thing.display();
+    }
+    for (Moveable thing : thingsToMove) {
+      thing.move();
+    }
   }
-}
