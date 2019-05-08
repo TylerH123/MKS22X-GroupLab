@@ -119,7 +119,7 @@ class Ball extends Thing implements Moveable {
   void bounce() {
     if (direction == 0) direction = 1; //go in the opp direction
     else direction = 0;
-    radius -= 2; 
+    radius -= 2;
   }
 
   void move() {
@@ -134,9 +134,9 @@ class Ball extends Thing implements Moveable {
     //clockwise circle
     float t = millis()/1000.0;
     if ( x < width && y < height && x > 0 && y > 0) {
-       if (t == 10) {
-      radius += 3;
-    }
+      if (t == 10) {
+        radius += 3;
+      }
       if (shapeC == 0) {
         if (direction == 0) {
           x+= -1 * radius * cos(t);
@@ -167,9 +167,11 @@ class Ball extends Thing implements Moveable {
 
 
 
-  /*DO NOT EDIT THE REST OF THIS */
+/*DO NOT EDIT THE REST OF THIS */
 
-<<<<<<< HEAD
+ArrayList<Displayable> thingsToDisplay;
+ArrayList<Moveable> thingsToMove;
+
 void setup() {
   PImage beauty = loadImage("beautyrock.jpg");
   beauty.resize(50, 50);
@@ -179,49 +181,34 @@ void setup() {
   eyes.resize(35, 35);
   size(1000, 800);
   PImage p;
-=======
-  ArrayList<Displayable> thingsToDisplay;
-  ArrayList<Moveable> thingsToMove;
->>>>>>> 4695652860fc5397eb4913b6dad42b477764b88a
-
-  void setup() {
-    PImage beauty = loadImage("beautyrock.jpg");
-    beauty.resize(50, 50);
-    PImage ugly = loadImage("uglyrock.jpeg");
-    ugly.resize(50, 50);
-    PImage eyes = loadImage("eyeballs.png");
-    eyes.resize(35, 35);
-    size(1000, 800);
-    PImage p;
-    PImage poke = loadImage("pokeball.png"); 
-    poke.resize(50, 50);
-    thingsToDisplay = new ArrayList<Displayable>();
-    thingsToMove = new ArrayList<Moveable>();
-    for (int i = 0; i < 10; i++) {
-      Ball b = new Ball(50+random(width-100), 50+random(height-100), poke);
-      thingsToDisplay.add(b);
-      thingsToMove.add(b);
-      int j =(int)(random(2));
-      if (j==0) {
-        p = beauty;
-      } else p = ugly;
-      Rock r = new Rock(50+random(width-100), 50+random(height-100), p);
-      thingsToDisplay.add(r);
-    }
-    for (int i = 0; i < 3; i++) {
-      int j =(int)(random(2));
-      if (j==0) {
-        p = beauty;
-      } else p = ugly;
-      LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100), p, eyes);
-      thingsToDisplay.add(m);
-      thingsToMove.add(m);
-    }
+  PImage poke = loadImage("pokeball.png"); 
+  poke.resize(50, 50);
+  thingsToDisplay = new ArrayList<Displayable>();
+  thingsToMove = new ArrayList<Moveable>();
+  for (int i = 0; i < 10; i++) {
+    Ball b = new Ball(50+random(width-100), 50+random(height-100), poke);
+    thingsToDisplay.add(b);
+    thingsToMove.add(b);
+    int j =(int)(random(2));
+    if (j==0) {
+      p = beauty;
+    } else p = ugly;
+    Rock r = new Rock(50+random(width-100), 50+random(height-100), p);
+    thingsToDisplay.add(r);
   }
-  void draw() {
-    background(255);
+  for (int i = 0; i < 3; i++) {
+    int j =(int)(random(2));
+    if (j==0) {
+      p = beauty;
+    } else p = ugly;
+    LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100), p, eyes);
+    thingsToDisplay.add(m);
+    thingsToMove.add(m);
+  }
+}
+void draw() {
+  background(255);
 
-<<<<<<< HEAD
   for (Displayable thing : thingsToDisplay) {
     thing.display();
   }
@@ -229,12 +216,3 @@ void setup() {
     thing.move();
   }
 }
-=======
-    for (Displayable thing : thingsToDisplay) {
-      thing.display();
-    }
-    for (Moveable thing : thingsToMove) {
-      thing.move();
-    }
-  }
->>>>>>> 4695652860fc5397eb4913b6dad42b477764b88a
