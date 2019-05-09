@@ -129,28 +129,34 @@ class Ball extends Thing implements Moveable {
       if (x <= 0) x+= random(10,100);
       if (y <= 0) y+= random(10,100);
     }
-    //if (direction == 0) direction = 1;
-    //if (direction == 1) direction = 0;
+    changeD();
+    radius+= .9;
     hM();
+  }
+  
+  void changeD() {
+    if (direction == 0) direction = 1;
+    else direction = 0;
   }
 
     void hM() {
-      float t = millis()/1000.0;
+      float t = millis()/1000.00;
+      //if (t % 10 == 0) radius *= random(1,4);
       //shapeC = circlular path
       if (shapeC == 0) {
         if (direction == 0) {
-          x+= -1 * radius * cos(t) + random(2);
+          x+= -1 * radius * cos(t) + random(10);
         } else {
-          x += radius*cos(t) + random(2);
+          x += radius*cos(t) + random(10);
         }
         y += radius*sin(t) + random(2);
       } 
       //shapeC = horizontal elliptical path
       else if (shapeC == 1) {
         if (direction == 0) {
-          x+= -1 * radius * cos(t) + random(2);
+          x+= -1 * radius * cos(t) + random(10);
         } else {
-          x+= radius * cos(t)+ random(2);
+          x+= radius * cos(t)+ random(10);
         }
         y += radius/2 * sin(t)+random(2) + random(2);
       }
