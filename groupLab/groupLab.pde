@@ -171,9 +171,9 @@ ArrayList<Displayable> thingsToDisplay;
 ArrayList<Moveable> thingsToMove;
 
 void setup() {
-  PImage beauty = loadImage("beautyrock.jpg");
+  PImage beauty = loadImage("beautyrock.png");
   beauty.resize(50, 50);
-  PImage ugly = loadImage("uglyrock.jpeg");
+  PImage ugly = loadImage("uglyrock.png");
   ugly.resize(50, 50);
   PImage eyes = loadImage("eyeballs.png");
   eyes.resize(35, 35);
