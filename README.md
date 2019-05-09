@@ -29,4 +29,7 @@
 5/08/19
     Tyler Huang + Mohammad Jawwad
       - bouncing causes direction change and a random bounce amount, as well as a radius change.
-      
+    Brandon Chao
+      - Helped start collideable with Caleb
+      - Moved instance variable for pImage to Thing for all classes to inherit
+      - Changed data images to be transparent in png files
