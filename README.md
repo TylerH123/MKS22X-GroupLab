@@ -28,5 +28,5 @@
 
 5/08/19
     Tyler Huang + Mohammad Jawwad
-      - radius changes due to time
-      - attempted bounce... nothing
+      - bouncing causes direction change and a random bounce amount, as well as a radius change.
+      
