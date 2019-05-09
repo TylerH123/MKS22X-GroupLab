@@ -92,6 +92,7 @@ class Ball extends Thing implements Moveable {
   int radius;
   int shapeC;
   int randColorR, randColorG, randColorB; 
+  int sDirection = 1; 
   Ball(float x, float y, PImage p) {
     super(x, y);
     this.img = p; 
@@ -183,6 +184,17 @@ class Ball extends Thing implements Moveable {
         hM();
       } 
       if (x + 50 >= width || y + 50 >= height || x <= 0 || y <= 0) bounce();
+    }
+    
+    void simpleMove(){
+       int[] mx= {0, 1, 1, 1, 0, -1, -1, -1};
+       int[] my = {1, 1, 0, -1, -1, -1, 0, 1};
+       int i = (int) random(8);
+       if (x < width && y < height) {
+         x += mx[i] * random(5);
+         y += my[i] * random(3);
+       }
+       if (x + 25 >= width || y + 25 >= height || x - 25 <= 0 || y - 25<= 0) sDirection *= -1;
     }
   }
 
