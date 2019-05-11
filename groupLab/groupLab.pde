@@ -12,10 +12,10 @@ interface Collideable {
 abstract class Thing implements Displayable {
   float x, y;//Position of the Thing
   PImage img;
-  PImage img2;
-  Thing(float x, float y) {
+  Thing(float x, float y, PImage p) {
     this.x = x;
     this.y = y;
+    img = p;
   } 
   abstract void display();
 }
@@ -23,12 +23,16 @@ abstract class Thing implements Displayable {
 class Rock extends Thing {
   int mode;
   Rock(float x, float y, PImage p) {
-    super(x, y);
-    this.img=p;
+    super(x, y,p);
   }
-  void isTouching(Thing other){
+  boolean isTouching(Thing other){
     float x1 = other.x;
     float y1 = other.y;
+    float distX = abs(x1 - x);
+    float distY = abs(y1-y);
+    int totalWide = 0;
+    return true;
+  }
     
   void display() {
     switch(mode) {
@@ -67,6 +71,7 @@ class Rock extends Thing {
 }
 
 public class LivingRock extends Rock implements Moveable {
+  PImage img2;
   LivingRock(float x, float y, PImage p, PImage eye) {
     super(x, y, p);
     this.img2 = eye;
@@ -101,8 +106,7 @@ class Ball extends Thing implements Moveable {
   int randColorR, randColorG, randColorB; 
   int sDirection = 1; 
   Ball(float x, float y, PImage p) {
-    super(x, y);
-    this.img = p; 
+    super(x, y,p);
     radius = (int) random(1, 11);
     direction = (int) random(2); //1 will be clockwise, 0 counterclockwise
     shapeC = (int) random(3); //0 is image, 1 is ellipse, 2 is complex
