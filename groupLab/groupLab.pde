@@ -20,7 +20,7 @@ abstract class Thing implements Displayable {
   abstract void display();
 }
 
-class Rock extends Thing {
+class Rock extends Thing implements Collideable {
   int mode;
   Rock(float x, float y, PImage p) {
     super(x, y,p);
