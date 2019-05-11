@@ -159,6 +159,9 @@ class circBall extends Ball {
     radius = (int) random(1, 11);
     direction = (int) random(2); //1 will be clockwise, 0 counterclockwise
   }
+  void move(){
+    x += xspeed * direction * cos(x);
+  }
 }
 
 
