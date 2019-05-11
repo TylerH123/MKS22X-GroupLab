@@ -33,3 +33,9 @@
       - Helped start collideable with Caleb
       - Moved instance variable for pImage to Thing for all classes to inherit
       - Changed data images to be transparent in png files
+      
+ 5/11/19
+    Mohammad Jawwad
+        - so my job is now livingRock. We will be changing the ball complex motions so bounce doesn't look so janky and clusters at a corner. Ported all repetetive motions of ball (circle/ellipse/vertical ellipse) to living rock, as they do not bounce. Personally I find this very offensive against the work I put in for ball but now I'm living rock so I get to keep my work as a compromise.
+    Tyler Huang
+        -removed image based balls set up as per directions, and created two complex shapes for each of the ball subclasses. 
