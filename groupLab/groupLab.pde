@@ -120,10 +120,10 @@ public class LivingRock extends Rock implements Moveable {
       y += radius * sin(t);
     }
   }
-void display() {
-  super.display();
-  image(img2, x, y);
-}
+  void display() {
+    super.display();
+    image(img2, x, y);
+  }
 }
 
 class Ball extends Thing implements Moveable { 
@@ -147,11 +147,10 @@ class Ball extends Thing implements Moveable {
     randColorB = (int)random(255);
     c = color(0, 0, 255);
   }
-  /**void complex() {
-   rectMode(CENTER);
-   rect(x, y, 20, 50);
-   rect(x, y, 50, 20);
-   }**/
+  void complex() {
+    fill(c); 
+    ellipse(x,y,50,50);
+  }
   void display() {
     fill(c);
     /**if (shapeC == 0) image(img, x, y);
