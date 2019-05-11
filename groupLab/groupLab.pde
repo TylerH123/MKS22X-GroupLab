@@ -30,7 +30,9 @@ class Rock extends Thing {
     float y1 = other.y;
     float distX = abs(x1 - x);
     float distY = abs(y1-y);
-    int totalWide = 0;
+    int totalWide = img.width + other.img.width;
+    int totalHeight = img.height + other.img.height;
+    if(distX<totalWide || distY < totalHeight) return false;
     return true;
   }
     
