@@ -112,10 +112,6 @@ class Ball extends Thing implements Moveable {
     randColorB = (int)random(255);
     c = color(0, 0, 255);
   }
-  void complex() {
-    fill(c); 
-    ellipse(x,y,50,50);
-  }
   void display() {
     fill(c);
     ellipse(x, y, xSize, ySize);
@@ -139,7 +135,59 @@ class Ball extends Thing implements Moveable {
     }
   }
 }
-
+class simpleBall extends Ball{
+  int xSize;
+  int ySize;
+  int direction;
+  int radius;
+  int shapeC;
+  int randColorR, randColorG, randColorB; 
+  int xDirection = 1;
+  int yDirection = 1; 
+  color c ; 
+  int xspeed = (int)random(5) + 1;
+  int yspeed = (int)random(5) + 1; 
+  simpleBall(float x, float y, int xSize, int ySize) {
+    super(x, y,xSize,ySize);
+    this.xSize = xSize;
+    this.ySize = ySize;
+    radius = (int) random(1, 11);
+    direction = (int) random(2); //1 will be clockwise, 0 counterclockwise
+    shapeC = (int) random(3); //0 is image, 1 is ellipse, 2 is complex
+    randColorR = (int)random(255);
+    randColorG = (int)random(255);
+    randColorB = (int)random(255);
+    c = color(0, 0, 255);
+  }
+  void display(){
+    fill(c);
+    ellipse(x, y, xSize, ySize);
+    fill(255, 165, 0);
+    ellipse(x+10, y-15, 10, 10);
+    fill(255, 0, 0); 
+    ellipse(x - 13, y, 10, 10);
+    fill(0, 255, 0);
+    ellipse(x, y - 20, 10, 10);
+    fill(0, 192, 199);
+    ellipse(x, y, 10, 10);
+    fill(122, 192, 88);
+    ellipse(x, y+15, 10, 10);
+    fill(150, 150, 150);
+    ellipse(x-15, y-15, 10, 10);
+    fill(200, 32, 200);
+    ellipse(x+15, y+10, 10, 10);
+    fill(50, 0, 102);
+    ellipse(x-10, y+13, 10, 10);
+    fill(60, 120, 180);
+    ellipse(x+13, y, 10, 10);
+  }
+  void move(){
+    x += xspeed * xDirection; 
+    y += yspeed * yDirection;
+    if (x + 25 >= width || x - 25 <= 0) xDirection *= -1;
+    if (y + 25 >= height || y - 25<= 0) yDirection *= -1;
+  }
+}
 
 
 /*DO NOT EDIT THE REST OF THIS */
