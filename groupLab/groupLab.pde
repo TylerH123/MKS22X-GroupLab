@@ -11,63 +11,40 @@ interface Collideable {
 
 abstract class Thing implements Displayable {
   float x, y;//Position of the Thing
-  PImage img;
-  Thing(float x, float y, PImage p) {
+  Thing(float x, float y) {
     this.x = x;
     this.y = y;
-    img = p;
   } 
   abstract void display();
 }
 
 class Rock extends Thing implements Collideable {
+  PImage img;
   int mode;
   Rock(float x, float y, PImage p) {
-    super(x, y, p);
+    super(x, y);
+    img = p;
   }
   boolean isTouching(Thing other) {
     float x1 = other.x;
     float y1 = other.y;
-    float distX = abs(x1 - x);
-    float distY = abs(y1-y);
-    int totalWide = img.width + other.img.width;
-    int totalHeight = img.height + other.img.height;
-    if (distX<totalWide || distY < totalHeight) return false;
+    float distCenterX = abs(x1 - x);
+    float distCenterY = abs(y1-y);
+    float minDistBetweenX=0;
+    float minDistBetweenY=0;
+
+    if (other instanceof Ball) {
+      minDistBetweenX = (img.width)/2.0 + ((Ball)other).xSize / 2.0;
+      minDistBetweenY = (img.height)/2.0 + ((Ball)other).ySize / 2.0;
+    } else if (other instanceof Rock) {
+      minDistBetweenX = (img.width)/2.0 + ((Rock)other).img.width / 2.0;
+      minDistBetweenY = (img.height)/2.0 + ((Rock)other).img.height / 2.0;
+    }
+    if (distCenterX<minDistBetweenX || distCenterY < minDistBetweenY) return false;
     return true;
   }
 
   void display() {
-    switch(mode) {
-      /*case 0:
-       simpleDisplay();
-       break;
-       case 1:
-       complexDisplay();
-       break;*/
-    default:
-      imageDisplay();
-    }
-  }
-  /*void simpleDisplay() {
-   ellipse(x, y, 50, 50);
-   }
-   void complexDisplay() {
-   float green = 100;
-   float red =   200;
-   float blue =  100;
-   for (float i = 50; i>0; i-=0.5) {
-   color c = color(red, green, blue);
-   fill(c);
-   ellipse(x, y, i, i);
-   ellipse(x + random(10), y+random(10), i, i);
-   ellipse(x - random(10), y-random(10), i, i);
-   ellipse(x, y-random(10), i, i);
-   red-=1;
-   green+=6;
-   blue+=3;
-   }
-   }*/
-  void imageDisplay() {
     image(img, x, y);
   }
 }
@@ -85,21 +62,6 @@ public class LivingRock extends Rock implements Moveable {
     shapeC = (int) random(3);
   }
   void move() {
-    /*int speed=1;
-     int dir=1;
-     float dx = speed*dir;
-     boolean collide = false;
-     if (x+dx<width-25 && x+dx>25) {
-     x+=dx;
-     } else {
-     dir*=-1;
-     }
-     float dy = speed*dir;
-     if (y+dy<height-25 && y+dy>25) {
-     y+=dy;
-     } else {
-     dir*=-1;
-     }*/
     float t = millis()/1000.00;
     int d;
     if (di == 0) d = -1;
@@ -126,7 +88,9 @@ public class LivingRock extends Rock implements Moveable {
   }
 }
 
-class Ball extends Thing implements Moveable { 
+class Ball extends Thing implements Moveable {
+  int xSize;
+  int ySize;
   int direction;
   int radius;
   int shapeC;
@@ -136,9 +100,10 @@ class Ball extends Thing implements Moveable {
   color c ; 
   int xspeed = (int)random(5) + 1;
   int yspeed = (int)random(5) + 1; 
-  Ball(float x, float y, PImage p) {
-    super(x, y, p);
-    //this.img = p; 
+  Ball(float x, float y, int xSize, int ySize) {
+    super(x, y);
+    this.xSize = xSize;
+    this.ySize = ySize;
     radius = (int) random(1, 11);
     direction = (int) random(2); //1 will be clockwise, 0 counterclockwise
     shapeC = (int) random(3); //0 is image, 1 is ellipse, 2 is complex
@@ -153,82 +118,13 @@ class Ball extends Thing implements Moveable {
   }
   void display() {
     fill(c);
-    /**if (shapeC == 0) image(img, x, y);
-     if (shapeC == 1) ellipse(x, y, 50, 50);
-     if (shapeC == 2) complex(); **/
-    /* ONE PERSON WRITE THIS */
-    ellipse(x, y, 50, 50);
+    ellipse(x, y, xSize, ySize);
   }
-  /**void bounce() {
-   if (shapeC == 0) {
-   if (x +50 >= width) x-= random(50, 100);
-   if (y + 50 >= height) y-=random(50, 100);
-   if (x <= 0) x+= random(10, 100);
-   if (y <= 0) y+=random(10, 100);
-   } else {
-   if (x >= width) x-= random(10, 100);
-   if (y >= height) y -= random(10, 100);
-   if (x <= 0) x+= random(10, 100);
-   if (y <= 0) y+= random(10, 100);
-   }
-   changeD();
-   radius+= .9;
-   hM();
-   } **/
 
   void changeD() {
     if (direction == 0) direction = 1;
     else direction = 0;
   }
-
-  /**void hM() {
-   float t = millis()/1000.00;
-   //if (t % 10 == 0) radius *= random(1,4);
-   //shapeC = circlular path
-   if (shapeC == 0) {
-   if (direction == 0) {
-   x+= -1 * radius * cos(t) + random(10);
-   } else {
-   x += radius*cos(t) + random(10);
-   }
-   y += radius*sin(t) + random(2);
-   } 
-   //shapeC = horizontal elliptical path
-   else if (shapeC == 1) {
-   if (direction == 0) {
-   x+= -1 * radius * cos(t) + random(10);
-   } else {
-   x+= radius * cos(t)+ random(10);
-   }
-   y += radius/2 * sin(t)+random(2) + random(2);
-   }
-   //shapeC = veritcal elliptical path
-   else {
-   if (direction == 0) {
-   x += -1 * radius/2 * cos(t) + random(2);
-   } else {
-   x += radius/2 * cos(t) + random(2);
-   }
-   y += radius * sin(t) + random(2);
-   }
-   }
-   
-   void move() {
-  /* ONE PERSON WRITE THIS (Jawwad) */
-  /*int[] mx= {0, 1, 1, 1, 0, -1, -1, -1};
-   int[] my = {1, 1, 0, -1, -1, -1, 0, 1};
-   int i = (int) random(8);
-   if (x < width && y < height) {
-   x += mx[i] * width/10;
-   y += my[i] * height/10;
-   } elder randomized version*/
-  //clockwise circle
-  /**if ( x >= 0 && y >= 0 && x<= width -50 && y<= height- 50) { //basically when inside range
-   hM();
-   } 
-   if (x + 50 >= width || y + 50 >= height || x <= 0 || y <= 0) bounce();
-   }**/
-
   void move() {
     x += xspeed * xDirection; 
     y += yspeed * yDirection;
@@ -265,7 +161,7 @@ void setup() {
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   for (int i = 0; i < 10; i++) {
-    Ball b = new Ball(50+random(width-100), 50+random(height-100), poke);
+    Ball b = new Ball(50+random(width-100), 50+random(height-100), 50, 50 );
     thingsToDisplay.add(b);
     thingsToMove.add(b);
     int j =(int)(random(2));
