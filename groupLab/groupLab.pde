@@ -106,10 +106,11 @@ class Ball extends Thing implements Moveable {
   int radius;
   int shapeC;
   int randColorR, randColorG, randColorB; 
-  int sDirection = 1; 
+  int xDirection = 1;
+  int yDirection = 1; 
   color c ; 
-  int xspeed = (int)random(5);
-  int yspeed = (int)random(5); 
+  int xspeed = (int)random(5) + 1;
+  int yspeed = (int)random(5) + 1; 
   Ball(float x, float y, PImage p) {
     super(x, y, p);
     //this.img = p; 
@@ -205,14 +206,16 @@ class Ball extends Thing implements Moveable {
    }**/
 
   void move() {
-    x += xspeed * sDirection; 
-    y += yspeed * sDirection;
-    if (x + 25 >= width || y + 25 >= height || x - 25 <= 0 || y - 25<= 0) sDirection *= -1;
+    x += xspeed * xDirection; 
+    y += yspeed * yDirection;
+    if (x + 25 >= width || x - 25 <= 0) xDirection *= -1;
+    if (y + 25 >= height || y - 25<= 0) yDirection *= -1;
   }
   void collision(Rock r) {
     if (r.x == this.x && r.y == this.y) {
       c = color(255, 0, 0); 
-      sDirection *= -1;
+      xDirection *= -1;
+      yDirection *= -1;
     }
   }
 }
