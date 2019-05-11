@@ -1,6 +1,5 @@
 interface Displayable {
   void display();
-  void collide();
 }
 
 interface Moveable {
@@ -21,13 +20,14 @@ abstract class Thing implements Displayable {
 
 class Rock extends Thing implements Collideable {
   PImage img;
+  PImage colImg;
   int mode;
-  Rock(float x, float y, PImage p) {
+  Rock(float x, float y, PImage p, PImage collisionImage) {
     super(x, y);
     img = p;
+    colImg = collisionImage;
   }
-  void collide() {
-  }
+
   boolean isTouching(Thing other) {
     float x1 = other.x;
     float y1 = other.y;
@@ -53,13 +53,13 @@ class Rock extends Thing implements Collideable {
 }
 
 public class LivingRock extends Rock implements Moveable {
-  PImage img2;
+  PImage eyeImg;
   float radius;
   int di; //clockwise counterclockwise
   int shapeC; //orbit shape (circle, ellipse, vertical ellipse)
-  LivingRock(float x, float y, PImage p, PImage eye) {
-    super(x, y, p);
-    this.img2 = eye;
+  LivingRock(float x, float y, PImage p, PImage collisionImage, PImage eye) {
+    super(x, y, p, collisionImage);
+    this.eyeImg = eye;
     di = (int) random(2); 
     radius = random(1, 3);
     shapeC = (int) random(3);
@@ -87,7 +87,7 @@ public class LivingRock extends Rock implements Moveable {
   }
   void display() {
     super.display();
-    image(img2, x, y);
+    image(eyeImg, x, y);
   }
 }
 
@@ -115,8 +115,7 @@ class Ball extends Thing implements Moveable {
     randColorB = (int)random(255);
     c = color(0, 0, 255);
   }
-  void collide() {
-  }
+
   void display() {
     fill(c);
     ellipse(x, y, xSize, ySize);
@@ -153,6 +152,8 @@ void setup() {
   size(1000, 800);
   PImage p;
   PImage poke = loadImage("pokeball.png"); 
+  PImage explosive = loadImage("fireRock.png");
+  explosive.resize(50,50);
   poke.resize(50, 50);
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
@@ -165,7 +166,7 @@ void setup() {
     if (j==0) {
       p = beauty;
     } else p = ugly;
-    Rock r = new Rock(50+random(width-100), 50+random(height-100), p);
+    Rock r = new Rock(50+random(width-100), 50+random(height-100), p, explosive);
     thingsToDisplay.add(r);
     ListOfCollideables.add(r);
   }
@@ -174,7 +175,7 @@ void setup() {
     if (j==0) {
       p = beauty;
     } else p = ugly;
-    LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100), p, eyes);
+    LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100), p, explosive, eyes);
     thingsToDisplay.add(m);
     thingsToMove.add(m);
     ListOfCollideables.add(m);
@@ -185,9 +186,8 @@ void draw() {
 
   for (Displayable thing : thingsToDisplay) {
     for ( Collideable c : ListOfCollideables) {
-        Thing thingie = (Thing) thing;
-        if (c!=thing && c.isTouching(thingie)) {
-        thingie.collide();
+      Thing thingie = (Thing) thing;
+      if (c!=thing && c.isTouching(thingie)) {
         thingie.display();
       }
     }
