@@ -14,8 +14,9 @@ abstract class Thing implements Displayable {
   Thing(float x, float y) {
     this.x = x;
     this.y = y;
-  } 
+  }
   abstract void display();
+  abstract void Collide();
 }
 
 class Rock extends Thing implements Collideable {
@@ -127,14 +128,8 @@ class Ball extends Thing implements Moveable {
     if (x + 25 >= width || x - 25 <= 0) xDirection *= -1;
     if (y + 25 >= height || y - 25<= 0) yDirection *= -1;
   }
-  void collision(Rock r) {
-    if (r.x == this.x && r.y == this.y) {
-      c = color(255, 0, 0); 
-      xDirection *= -1;
-      yDirection *= -1;
-    }
-  }
 }
+
 
 
 
@@ -142,6 +137,7 @@ class Ball extends Thing implements Moveable {
 
 ArrayList<Displayable> thingsToDisplay;
 ArrayList<Moveable> thingsToMove;
+ArrayList<Collideable> ListOfCollideables;
 
 void setup() {
   PImage beauty = loadImage("beautyrock.png");
@@ -166,6 +162,7 @@ void setup() {
     } else p = ugly;
     Rock r = new Rock(50+random(width-100), 50+random(height-100), p);
     thingsToDisplay.add(r);
+    ListOfCollideables.add(r);
   }
   for (int i = 0; i < 3; i++) {
     int j =(int)(random(2));
@@ -175,14 +172,22 @@ void setup() {
     LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100), p, eyes);
     thingsToDisplay.add(m);
     thingsToMove.add(m);
+    ListOfCollideables.add(m);
+
   }
 }
 void draw() {
   background(255);
 
   for (Displayable thing : thingsToDisplay) {
-    thing.display();
+    for ( Collideable c : ListOfCollideables) {
+      if (c!=thing && c.isTouching((Thing)thing)) {
+        thing.collide();
+        thing.display();
+      }
+    }
   }
+
   for (Moveable thing : thingsToMove) {
     thing.move();
   }
