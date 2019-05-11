@@ -88,7 +88,7 @@ public class LivingRock extends Rock implements Moveable {
   }
 }
 
-class Ball extends Thing implements Moveable,Collideable {
+class Ball extends Thing implements Moveable{
   int xSize;
   int ySize;
   int randColorR, randColorG, randColorB; 
@@ -115,15 +115,6 @@ class Ball extends Thing implements Moveable,Collideable {
     y += yspeed * yDirection;
     if (x + 25 >= width || x - 25 <= 0) xDirection *= -1;
     if (y + 25 >= height || y - 25<= 0) yDirection *= -1;
-  }
-  boolean isTouching(Thing other) {
-    if (other.x == this.x && other.y == this.y) {
-      c = color(255, 0, 0); 
-      xDirection *= -1;
-      yDirection *= -1;
-      return true; 
-    }
-    return false;
   }
 }
 class simpleBall extends Ball {
