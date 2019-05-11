@@ -74,9 +74,15 @@ class Rock extends Thing implements Collideable {
 
 public class LivingRock extends Rock implements Moveable {
   PImage img2;
+  float radius;
+  int di; //clockwise counterclockwise
+  int shapeC; //orbit shape (circle, ellipse, vertical ellipse)
   LivingRock(float x, float y, PImage p, PImage eye) {
     super(x, y, p);
     this.img2 = eye;
+    di = (int) random(2); 
+    radius = random(1, 3);
+    shapeC = (int) random(3);
   }
   void move() {
     /*int speed=1;
@@ -94,17 +100,30 @@ public class LivingRock extends Rock implements Moveable {
      } else {
      dir*=-1;
      }*/
-    if (x < width && y < height && x > 0 && y > 0) {
-      float t = millis()/1000.00;
-      float radius = random(1,3);
-      x+= radius * cos(t);
-      y += radius *sin(t);
+    float t = millis()/1000.00;
+    int d;
+    if (di == 0) d = -1;
+    else d = 1;
+    //shapeC = circlular path
+    if (shapeC == 0) {
+      x+= d* radius * cos(t);
+      y += radius*sin(t);
+    } 
+    //shapeC = horizontal elliptical path
+    else if (shapeC == 1) {
+      x+= d* radius * cos(t);
+      y += radius/2 * sin(t);
+    }
+    //shapeC = veritcal elliptical path
+    else {
+      x += d * radius/2 * cos(t);
+      y += radius * sin(t);
     }
   }
-  void display() {
-    super.display();
-    image(img2, x, y);
-  }
+void display() {
+  super.display();
+  image(img2, x, y);
+}
 }
 
 class Ball extends Thing implements Moveable { 
