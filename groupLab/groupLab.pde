@@ -5,6 +5,9 @@ interface Displayable {
 interface Moveable {
   void move();
 }
+interface Collideable {
+      boolean isTouching(Thing other);
+}
 
 abstract class Thing implements Displayable {
   float x, y;//Position of the Thing
@@ -23,6 +26,10 @@ class Rock extends Thing {
     super(x, y);
     this.img=p;
   }
+  void isTouching(Thing other){
+    float x1 = other.x;
+    float y1 = other.y;
+    
   void display() {
     switch(mode) {
       /*case 0:
