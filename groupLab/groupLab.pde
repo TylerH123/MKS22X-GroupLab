@@ -79,20 +79,26 @@ public class LivingRock extends Rock implements Moveable {
     this.img2 = eye;
   }
   void move() {
-    int speed=1;
-    int dir=1;
-    float dx = speed*dir;
-    boolean collide = false;
-    if (x+dx<width-25 && x+dx>25) {
-      x+=dx;
-    } else {
-      dir*=-1;
-    }
-    float dy = speed*dir;
-    if (y+dy<height-25 && y+dy>25) {
-      y+=dy;
-    } else {
-      dir*=-1;
+    /*int speed=1;
+     int dir=1;
+     float dx = speed*dir;
+     boolean collide = false;
+     if (x+dx<width-25 && x+dx>25) {
+     x+=dx;
+     } else {
+     dir*=-1;
+     }
+     float dy = speed*dir;
+     if (y+dy<height-25 && y+dy>25) {
+     y+=dy;
+     } else {
+     dir*=-1;
+     }*/
+    if (x < width && y < height && x > 0 && y > 0) {
+      float t = millis()/1000.00;
+      float radius = random(1,3);
+      x+= radius * cos(t);
+      y += radius *sin(t);
     }
   }
   void display() {
