@@ -5,24 +5,37 @@ interface Displayable {
 interface Moveable {
   void move();
 }
+interface Collideable {
+  boolean isTouching(Thing other);
+}
 
 abstract class Thing implements Displayable {
   float x, y;//Position of the Thing
   PImage img;
-  PImage img2;
-  Thing(float x, float y) {
+  Thing(float x, float y, PImage p) {
     this.x = x;
     this.y = y;
+    img = p;
   } 
   abstract void display();
 }
 
-class Rock extends Thing {
+class Rock extends Thing implements Collideable {
   int mode;
   Rock(float x, float y, PImage p) {
-    super(x, y);
-    this.img=p;
+    super(x, y, p);
   }
+  boolean isTouching(Thing other) {
+    float x1 = other.x;
+    float y1 = other.y;
+    float distX = abs(x1 - x);
+    float distY = abs(y1-y);
+    int totalWide = img.width + other.img.width;
+    int totalHeight = img.height + other.img.height;
+    if (distX<totalWide || distY < totalHeight) return false;
+    return true;
+  }
+
   void display() {
     switch(mode) {
       /*case 0:
@@ -60,6 +73,7 @@ class Rock extends Thing {
 }
 
 public class LivingRock extends Rock implements Moveable {
+  PImage img2;
   LivingRock(float x, float y, PImage p, PImage eye) {
     super(x, y, p);
     this.img2 = eye;
@@ -96,8 +110,8 @@ class Ball extends Thing implements Moveable {
   color c ; 
   int xspeed = (int)random(5);
   int yspeed = (int)random(5); 
-  Ball(float x, float y) {
-    super(x, y);
+  Ball(float x, float y, PImage p) {
+    super(x, y, p);
     //this.img = p; 
     radius = (int) random(1, 11);
     direction = (int) random(2); //1 will be clockwise, 0 counterclockwise
@@ -105,7 +119,7 @@ class Ball extends Thing implements Moveable {
     randColorR = (int)random(255);
     randColorG = (int)random(255);
     randColorB = (int)random(255);
-    c = color(0,0,255);
+    c = color(0, 0, 255);
   }
   /**void complex() {
    rectMode(CENTER);
@@ -115,27 +129,27 @@ class Ball extends Thing implements Moveable {
   void display() {
     fill(c);
     /**if (shapeC == 0) image(img, x, y);
-    if (shapeC == 1) ellipse(x, y, 50, 50);
-    if (shapeC == 2) complex(); **/
+     if (shapeC == 1) ellipse(x, y, 50, 50);
+     if (shapeC == 2) complex(); **/
     /* ONE PERSON WRITE THIS */
-    ellipse(x,y,50,50);
+    ellipse(x, y, 50, 50);
   }
   /**void bounce() {
-    if (shapeC == 0) {
-      if (x +50 >= width) x-= random(50, 100);
-      if (y + 50 >= height) y-=random(50, 100);
-      if (x <= 0) x+= random(10, 100);
-      if (y <= 0) y+=random(10, 100);
-    } else {
-      if (x >= width) x-= random(10, 100);
-      if (y >= height) y -= random(10, 100);
-      if (x <= 0) x+= random(10, 100);
-      if (y <= 0) y+= random(10, 100);
-    }
-    changeD();
-    radius+= .9;
-    hM();
-  } **/
+   if (shapeC == 0) {
+   if (x +50 >= width) x-= random(50, 100);
+   if (y + 50 >= height) y-=random(50, 100);
+   if (x <= 0) x+= random(10, 100);
+   if (y <= 0) y+=random(10, 100);
+   } else {
+   if (x >= width) x-= random(10, 100);
+   if (y >= height) y -= random(10, 100);
+   if (x <= 0) x+= random(10, 100);
+   if (y <= 0) y+= random(10, 100);
+   }
+   changeD();
+   radius+= .9;
+   hM();
+   } **/
 
   void changeD() {
     if (direction == 0) direction = 1;
@@ -143,61 +157,61 @@ class Ball extends Thing implements Moveable {
   }
 
   /**void hM() {
-    float t = millis()/1000.00;
-    //if (t % 10 == 0) radius *= random(1,4);
-    //shapeC = circlular path
-    if (shapeC == 0) {
-      if (direction == 0) {
-        x+= -1 * radius * cos(t) + random(10);
-      } else {
-        x += radius*cos(t) + random(10);
-      }
-      y += radius*sin(t) + random(2);
-    } 
-    //shapeC = horizontal elliptical path
-    else if (shapeC == 1) {
-      if (direction == 0) {
-        x+= -1 * radius * cos(t) + random(10);
-      } else {
-        x+= radius * cos(t)+ random(10);
-      }
-      y += radius/2 * sin(t)+random(2) + random(2);
-    }
-    //shapeC = veritcal elliptical path
-    else {
-      if (direction == 0) {
-        x += -1 * radius/2 * cos(t) + random(2);
-      } else {
-        x += radius/2 * cos(t) + random(2);
-      }
-      y += radius * sin(t) + random(2);
-    }
-  }
-
-  void move() {
-    /* ONE PERSON WRITE THIS (Jawwad) */
-    /*int[] mx= {0, 1, 1, 1, 0, -1, -1, -1};
-     int[] my = {1, 1, 0, -1, -1, -1, 0, 1};
-     int i = (int) random(8);
-     if (x < width && y < height) {
-     x += mx[i] * width/10;
-     y += my[i] * height/10;
-     } elder randomized version*/
-    //clockwise circle
-    /**if ( x >= 0 && y >= 0 && x<= width -50 && y<= height- 50) { //basically when inside range
-      hM();
-    } 
-    if (x + 50 >= width || y + 50 >= height || x <= 0 || y <= 0) bounce();
-  }**/
+   float t = millis()/1000.00;
+   //if (t % 10 == 0) radius *= random(1,4);
+   //shapeC = circlular path
+   if (shapeC == 0) {
+   if (direction == 0) {
+   x+= -1 * radius * cos(t) + random(10);
+   } else {
+   x += radius*cos(t) + random(10);
+   }
+   y += radius*sin(t) + random(2);
+   } 
+   //shapeC = horizontal elliptical path
+   else if (shapeC == 1) {
+   if (direction == 0) {
+   x+= -1 * radius * cos(t) + random(10);
+   } else {
+   x+= radius * cos(t)+ random(10);
+   }
+   y += radius/2 * sin(t)+random(2) + random(2);
+   }
+   //shapeC = veritcal elliptical path
+   else {
+   if (direction == 0) {
+   x += -1 * radius/2 * cos(t) + random(2);
+   } else {
+   x += radius/2 * cos(t) + random(2);
+   }
+   y += radius * sin(t) + random(2);
+   }
+   }
+   
+   void move() {
+  /* ONE PERSON WRITE THIS (Jawwad) */
+  /*int[] mx= {0, 1, 1, 1, 0, -1, -1, -1};
+   int[] my = {1, 1, 0, -1, -1, -1, 0, 1};
+   int i = (int) random(8);
+   if (x < width && y < height) {
+   x += mx[i] * width/10;
+   y += my[i] * height/10;
+   } elder randomized version*/
+  //clockwise circle
+  /**if ( x >= 0 && y >= 0 && x<= width -50 && y<= height- 50) { //basically when inside range
+   hM();
+   } 
+   if (x + 50 >= width || y + 50 >= height || x <= 0 || y <= 0) bounce();
+   }**/
 
   void move() {
     x += xspeed * sDirection; 
     y += yspeed * sDirection;
     if (x + 25 >= width || y + 25 >= height || x - 25 <= 0 || y - 25<= 0) sDirection *= -1;
   }
-  void collision(Rock r){
-    if (r.x == this.x && r.y == this.y){
-      c = color(255,0,0); 
+  void collision(Rock r) {
+    if (r.x == this.x && r.y == this.y) {
+      c = color(255, 0, 0); 
       sDirection *= -1;
     }
   }
@@ -219,12 +233,12 @@ void setup() {
   eyes.resize(35, 35);
   size(1000, 800);
   PImage p;
-  //PImage poke = loadImage("pokeball.png"); 
-  //poke.resize(50, 50);
+  PImage poke = loadImage("pokeball.png"); 
+  poke.resize(50, 50);
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   for (int i = 0; i < 10; i++) {
-    Ball b = new Ball(50+random(width-100), 50+random(height-100));
+    Ball b = new Ball(50+random(width-100), 50+random(height-100), poke);
     thingsToDisplay.add(b);
     thingsToMove.add(b);
     int j =(int)(random(2));
