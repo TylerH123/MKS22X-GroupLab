@@ -181,7 +181,13 @@ void setup() {
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   for (int i = 0; i < 10; i++) {
-    Ball b = new simpleBall(50+random(width-100), 50+random(height-100), 50, 50 );
+    Ball b;
+    if ((int)random(2) ==1) {
+      b = new simpleBall(50+random(width-100), 50+random(height-100), 50, 50 );
+    }
+    else {
+      b = new circBall(50+random(width-100), 50 + random(height-100),50,50);
+    }
     thingsToDisplay.add(b);
     thingsToMove.add(b);
     int j =(int)(random(2));
