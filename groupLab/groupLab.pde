@@ -1,5 +1,6 @@
 interface Displayable {
   void display();
+  void collide();
 }
 
 interface Moveable {
@@ -9,14 +10,13 @@ interface Collideable {
   boolean isTouching(Thing other);
 }
 
+
 abstract class Thing implements Displayable {
   float x, y;//Position of the Thing
   Thing(float x, float y) {
     this.x = x;
     this.y = y;
   }
-  abstract void display();
-  abstract void Collide();
 }
 
 class Rock extends Thing implements Collideable {
@@ -25,6 +25,8 @@ class Rock extends Thing implements Collideable {
   Rock(float x, float y, PImage p) {
     super(x, y);
     img = p;
+  }
+  void collide() {
   }
   boolean isTouching(Thing other) {
     float x1 = other.x;
@@ -113,6 +115,8 @@ class Ball extends Thing implements Moveable {
     randColorB = (int)random(255);
     c = color(0, 0, 255);
   }
+  void collide() {
+  }
   void display() {
     fill(c);
     ellipse(x, y, xSize, ySize);
@@ -152,6 +156,7 @@ void setup() {
   poke.resize(50, 50);
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
+  ListOfCollideables = new ArrayList<Collideable>();
   for (int i = 0; i < 10; i++) {
     Ball b = new Ball(50+random(width-100), 50+random(height-100), 50, 50 );
     thingsToDisplay.add(b);
@@ -173,7 +178,6 @@ void setup() {
     thingsToDisplay.add(m);
     thingsToMove.add(m);
     ListOfCollideables.add(m);
-
   }
 }
 void draw() {
@@ -181,9 +185,10 @@ void draw() {
 
   for (Displayable thing : thingsToDisplay) {
     for ( Collideable c : ListOfCollideables) {
-      if (c!=thing && c.isTouching((Thing)thing)) {
-        thing.collide();
-        thing.display();
+        Thing thingie = (Thing) thing;
+        if (c!=thing && c.isTouching(thingie)) {
+        thingie.collide();
+        thingie.display();
       }
     }
   }
