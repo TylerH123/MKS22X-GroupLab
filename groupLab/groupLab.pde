@@ -147,20 +147,14 @@ class simpleBall extends Ball {
   }
 }
 class circBall extends Ball {
-  int xDirection;
-  int yDirection;
-  float amplitude;
   int d;
+  float xSpeed = 2;
+  float ySpeed = 2;
+  float xOfPoint=x;
+  float yOfPoint=y; 
   circBall(float x, float y, int xSize, int ySize) {
     super(x, y, xSize, ySize);
-    xDirection = (int) random(2);
-    yDirection = (int) random(2);
-    if (xDirection == 0 && yDirection == 0) {
-      xDirection = (int) random(2);
-      yDirection = (int) random(2);
-    }
-    //dDeter();
-    amplitude = random(3,6);
+    
   }
   void dDeter() {
      if (xDirection == 0) {
@@ -188,13 +182,16 @@ class circBall extends Ball {
   }
   
   void move() {
-    y += yspeed * amplitude * sin(10*x) *yDirection;
-    x += xspeed *xDirection;
+    xOfPoint += xSpeed;
+    yOfPoint += ySpeed;
+    y = yOfPoint + 20*sin(xOfPoint) * sin(radians(45)+radians(90)) ;
+    x = xOfPoint + 20*sin(xOfPoint) * cos(radians(45)+radians(90)) ;
+    
     if (x + 25 >= width || x - 25 <= 0) {
-      xDirection *= -1;
+      xSpeed *= -1;
     }
     if (y + 25 >= height || y - 25<= 0) {
-      yDirection *= -1;
+      ySpeed *= -1;
     }
   }
 }
