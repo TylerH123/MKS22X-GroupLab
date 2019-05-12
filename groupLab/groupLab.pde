@@ -29,6 +29,7 @@ class Rock extends Thing implements Collideable {
   }
 
   boolean isTouching(Thing other) {
+    //
     float x1 = other.x;
     float y1 = other.y;
     float distCenterX = abs(x1 - x);
