@@ -36,9 +36,13 @@
       
  5/11/19
     Mohammad Jawwad And Caleb Kahan (motions)
-        - so jawwad' job is now motions overhaul with Caleb. We will be changing the ball complex motions so bounce doesn't look so janky and clusters at a corner. Ported all repetitive motions of ball (circle/ellipse/vertical ellipse) to living rock, as they do not bounce.
+        - so jawwad' job is now motions overhaul with Caleb. We will be changing the ball complex motions so bounce doesn't look so 
+        janky and clusters at a corner. Ported all repetitive motions of ball (circle/ellipse/vertical ellipse) to living rock, as they 
+        do not bounce.
         - humongous bug fix overall and helping each other (jawwad supports ideas / initial attempts, caleb bug fixes and perfects).
         - ball subclass now moves in sine curves in 8 poss directions! WITH BOUNCE
-        - currently working on other subclass motion (attempted spiral movement failed, have a basic movement set up. Trying gravity based)
+        - currently working on other subclass motion (attempted spiral movement failed, have a basic movement set up. Trying gravity
+        based)
+        - Caleb did collideable for Thing on Collideable. Kudos to him!
     Tyler Huang and Brandon Cho (display)
         - display changes: created 2 custom ball shapes. (Brandon did the planet like shape!)
