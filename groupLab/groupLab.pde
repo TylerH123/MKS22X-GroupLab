@@ -122,26 +122,28 @@ class simpleBall extends Ball {
     super(x, y, xSize, ySize);
   }
   void display() {
-    fill(c);
-    ellipse(x, y, xSize, ySize);
-    fill(255, 165, 0);
-    ellipse(x+10, y-15, 10, 10);
-    fill(255, 0, 0); 
-    ellipse(x - 13, y, 10, 10);
-    fill(0, 255, 0);
-    ellipse(x, y - 20, 10, 10);
-    fill(0, 192, 199);
-    ellipse(x, y, 10, 10);
-    fill(122, 192, 88);
-    ellipse(x, y+15, 10, 10);
-    fill(150, 150, 150);
-    ellipse(x-15, y-15, 10, 10);
-    fill(200, 32, 200);
-    ellipse(x+15, y+10, 10, 10);
-    fill(50, 0, 102);
-    ellipse(x-10, y+13, 10, 10);
-    fill(60, 120, 180);
-    ellipse(x+13, y, 10, 10);
+    stroke(224,224,224);
+    fill(224,224,224);
+    ellipse(x,y,80,10);
+    fill(255,255,255);
+    ellipse(x,y,60,10);
+    stroke(47,63,163);
+    fill(47,63,163);
+    circle(x,y,50);
+    stroke(52,72,193);
+    fill(52,72,193);
+    circle(x,y,40);
+    stroke(60,110,255);
+    fill(60,110,255);
+    circle(x,y,30);
+    fill(70,120,255);
+    circle(x,y,20);
+    fill(61,80,201);
+    circle(x-10,y+10,5);
+    fill(150,250,255);
+    ellipse(x,y,10,5);
+    fill(56,72,202);
+    ellipse(x+4,y-3,15,6);
   }
   void move() {
   }
