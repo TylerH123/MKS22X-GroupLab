@@ -94,22 +94,16 @@ public class LivingRock extends Rock implements Moveable {
 class Ball extends Thing implements Moveable {
   int xSize;
   int ySize;
-  int direction;
-  int radius;
-  int shapeC;
   int randColorR, randColorG, randColorB; 
   int xDirection = 1;
   int yDirection = 1; 
-  color c ; 
+  color c; 
   int xspeed = (int)random(5) + 1;
   int yspeed = (int)random(5) + 1; 
   Ball(float x, float y, int xSize, int ySize) {
     super(x, y);
     this.xSize = xSize;
     this.ySize = ySize;
-    radius = (int) random(1, 11);
-    direction = (int) random(2); //1 will be clockwise, 0 counterclockwise
-    shapeC = (int) random(3); //0 is image, 1 is ellipse, 2 is complex
     randColorR = (int)random(255);
     randColorG = (int)random(255);
     randColorB = (int)random(255);
@@ -120,16 +114,60 @@ class Ball extends Thing implements Moveable {
     fill(c);
     ellipse(x, y, xSize, ySize);
   }
-
-  void changeD() {
-    if (direction == 0) direction = 1;
-    else direction = 0;
-  }
   void move() {
     x += xspeed * xDirection; 
     y += yspeed * yDirection;
     if (x + 25 >= width || x - 25 <= 0) xDirection *= -1;
     if (y + 25 >= height || y - 25<= 0) yDirection *= -1;
+  }
+}
+class simpleBall extends Ball {
+  simpleBall(float x, float y, int xSize, int ySize) {
+    super(x, y, xSize, ySize);
+  }
+  void display() {
+    fill(c);
+    ellipse(x, y, xSize, ySize);
+    fill(255, 165, 0);
+    ellipse(x+10, y-15, 10, 10);
+    fill(255, 0, 0); 
+    ellipse(x - 13, y, 10, 10);
+    fill(0, 255, 0);
+    ellipse(x, y - 20, 10, 10);
+    fill(0, 192, 199);
+    ellipse(x, y, 10, 10);
+    fill(122, 192, 88);
+    ellipse(x, y+15, 10, 10);
+    fill(150, 150, 150);
+    ellipse(x-15, y-15, 10, 10);
+    fill(200, 32, 200);
+    ellipse(x+15, y+10, 10, 10);
+    fill(50, 0, 102);
+    ellipse(x-10, y+13, 10, 10);
+    fill(60, 120, 180);
+    ellipse(x+13, y, 10, 10);
+  }
+}
+class circBall extends Ball {
+  int direction;
+  int radius; 
+  circBall(float x, float y, int xSize, int ySize) {
+    super(x, y, xSize, ySize);
+    radius = (int) random(1, 11);
+    direction = (int) random(2); //1 will be clockwise, 0 counterclockwise
+  }
+  void display() {
+    fill(c);
+    ellipse(x, y, xSize, ySize);
+    fill(10, 255, 0); 
+    rectMode(CENTER);
+    square(x, y, 10);
+    fill(70, 0, 70);
+    square(x+10, y-15, 10);
+  }
+  void move() {
+    //x += xspeed * direction * cos(x);
+    //y += yspeed * direction * sin(y);
   }
 }
 
@@ -153,13 +191,18 @@ void setup() {
   PImage p;
   PImage poke = loadImage("pokeball.png"); 
   PImage explosive = loadImage("fireRock.png");
-  explosive.resize(50,50);
+  explosive.resize(50, 50);
   poke.resize(50, 50);
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   ListOfCollideables = new ArrayList<Collideable>();
   for (int i = 0; i < 10; i++) {
-    Ball b = new Ball(50+random(width-100), 50+random(height-100), 50, 50 );
+    Ball b;
+    if ((int)random(2) ==1) {
+      b = new simpleBall(50+random(width-100), 50+random(height-100), 50, 50 );
+    } else {
+      b = new circBall(50+random(width-100), 50 + random(height-100), 50, 50);
+    }
     thingsToDisplay.add(b);
     thingsToMove.add(b);
     int j =(int)(random(2));
