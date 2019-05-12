@@ -184,8 +184,8 @@ class circBall extends Ball {
   void move() {
     xOfPoint += xSpeed;
     yOfPoint += ySpeed;
-    y = yOfPoint + 20*sin(xOfPoint) * sin(radians(45)+radians(90)) ;
-    x = xOfPoint + 20*sin(xOfPoint) * cos(radians(45)+radians(90)) ;
+    y = yOfPoint + 40*sin(xOfPoint/30) * sin(radians(45)+radians(90)) ;
+    x = xOfPoint + 40*sin(xOfPoint/30) * cos(radians(45)+radians(90)) ;
     
     if (x + 25 >= width || x - 25 <= 0) {
       xSpeed *= -1;
