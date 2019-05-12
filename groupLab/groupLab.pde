@@ -43,12 +43,17 @@ class Rock extends Thing implements Collideable {
       minDistBetweenX = (img.width)/2.0 + ((Rock)other).img.width / 2.0;
       minDistBetweenY = (img.height)/2.0 + ((Rock)other).img.height / 2.0;
     }
-    if (distCenterX<minDistBetweenX || distCenterY < minDistBetweenY) return false;
+    if (distCenterX>minDistBetweenX && distCenterY > minDistBetweenY) return false;
     return true;
   }
 
   void display() {
-    image(img, x, y);
+    for ( Collideable c : ListOfCollideables) {
+      if (c!=this && c.isTouching(this)) 
+        image(colImg, x, y); 
+      else
+        image(img, x, y);
+    }
   }
 }
 
@@ -228,12 +233,7 @@ void draw() {
   background(255);
 
   for (Displayable thing : thingsToDisplay) {
-    for ( Collideable c : ListOfCollideables) {
-      Thing thingie = (Thing) thing;
-      if (c!=thing && c.isTouching(thingie)) {
-        thingie.display();
-      }
-    }
+    thing.display();
   }
 
   for (Moveable thing : thingsToMove) {
