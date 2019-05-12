@@ -173,11 +173,11 @@ class simpleBall extends Ball {
     y+= yspeed * yDirection;
     if (x > width || x <0) {
       xDirection *= -1;
-      xspeed *= 1.2;
+      xspeed *= 1.02;
     }
     if (y > height || y < 0) {
       yDirection *= -1;
-      yspeed *= 1.2;
+      yspeed *= 1.02;
     }
   }
 }
