@@ -156,6 +156,10 @@ class circBall extends Ball {
   }
   void display() {
     fill(c);
+    for ( Collideable co : ListOfCollideables) {
+      if (co!=this && co.isTouching(this)) 
+        fill(color(255,0,0));
+    }
     ellipse(x, y, xSize, ySize);
     fill(10, 255, 0); 
     rectMode(CENTER);
