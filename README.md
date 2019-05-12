@@ -42,7 +42,10 @@
         - humongous bug fix overall and helping each other (jawwad supports ideas / initial attempts, caleb bug fixes and perfects).
         - ball subclass now moves in sine curves in 8 poss directions! WITH BOUNCE
         - currently working on other subclass motion (attempted spiral movement failed, have a basic movement set up. Trying gravity
-        based)
-        - Caleb did collideable for Thing on Collideable. Kudos to him!
+        based, though this clusters or eventually disappears off window)
+        - Caleb wrote a meh collideable. There is a huge overhaul of bug fixes we will be doing tomorrow on this.
     Tyler Huang and Brandon Cho (display)
-        - display changes: created 2 custom ball shapes. (Brandon did the planet like shape!)
+        - display changes: created 2 custom ball shapes. (Brandon did the planet like shape! such wow!, and Tyler did the infinity stone    ball!
+
+
+*side note: Jawwad's been updating the README. Please send him hot cocoa for his efforts. 
