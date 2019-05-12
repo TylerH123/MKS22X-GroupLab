@@ -96,7 +96,7 @@ public class LivingRock extends Rock implements Moveable {
     fill(255, 225, 106);
     ellipse(x, y, 60, 10);
     ellipse(x, y, 10, 60);
-    fill(255, 250, 60);
+    fill(255, 230, 145);
     circle(x, y, 50);
     fill(100, 255, 60);
     circle(x-15, y, 10);
@@ -104,6 +104,12 @@ public class LivingRock extends Rock implements Moveable {
     circle(x+15, y, 10);
     fill(60, 220, 255);
     circle(x-10, y-10, 10);
+    fill(255, 70, 210);
+    circle(x+10, y-10, 10);
+    fill(255, 160, 60);
+    circle(x, y-15, 10);
+    fill(255, 250, 60);
+    circle(x, y, 15);
     image(eyeImg, x, y);
   }
 }
