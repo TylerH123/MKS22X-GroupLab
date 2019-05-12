@@ -92,7 +92,18 @@ public class LivingRock extends Rock implements Moveable {
     }
   }
   void display() {
-    super.display();
+    stroke(255, 255, 106);
+    fill(255, 225, 106);
+    ellipse(x, y, 60, 10);
+    ellipse(x, y, 10, 60);
+    fill(255, 250, 60);
+    circle(x, y, 50);
+    fill(100, 255, 60);
+    circle(x-15, y, 10);
+    fill(255, 55, 40);
+    circle(x+15, y, 10);
+    fill(60, 220, 255);
+    circle(x-10, y-10, 10);
     image(eyeImg, x, y);
   }
 }
@@ -175,7 +186,7 @@ class circBall extends Ball {
     fill(c);
     for ( Collideable co : ListOfCollideables) {
       if (co!=this && co.isTouching(this)) 
-        fill(color(255,0,0));
+        fill(color(255, 0, 0));
     }
     ellipse(x, y, xSize, ySize);
     fill(10, 255, 0); 
