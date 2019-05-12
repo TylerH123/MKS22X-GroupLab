@@ -152,8 +152,18 @@ class circBall extends Ball {
     radius = (int) random(1, 11);
     direction = (int) random(2); //1 will be clockwise, 0 counterclockwise
   }
+  void display(){
+    fill(c);
+    ellipse(x, y, xSize, ySize);
+    fill(10,255,0); 
+    rectMode(CENTER);
+    square(x,y,10);
+    fill(70,0,70);
+    square(x+10,y-15,10); 
+  }
   void move(){
-    x += xspeed * direction * cos(x);
+    //x += xspeed * direction * cos(x);
+    //y += yspeed * direction * sin(y);
   }
 }
 
