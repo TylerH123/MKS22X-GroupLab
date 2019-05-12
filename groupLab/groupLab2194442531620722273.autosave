@@ -29,7 +29,6 @@ class Rock extends Thing implements Collideable {
   }
 
   boolean isTouching(Thing other) {
-    //
     float x1 = other.x;
     float y1 = other.y;
     float distCenterX = abs(x1 - x);
@@ -101,7 +100,7 @@ abstract class Ball extends Thing implements Moveable {
   int xSize;
   int ySize;
   int randColorR, randColorG, randColorB; 
-  int xDirection = 1;
+  int xDirection = random(-1,1);
   int yDirection = 1; 
   color c; 
   int xspeed = (int)random(5) + 1;
@@ -114,69 +113,61 @@ abstract class Ball extends Thing implements Moveable {
     randColorG = (int)random(255);
     randColorB = (int)random(255);
     c = color(0, 0, 255);
+    //xDirection = (int) random(-1,1);
+    //yDirection = (int) random(-1,1);
+    /*if (xDirection == 0 && yDirection == 0) {
+      xDirection = (int) random(-1,1);
+      yDirection = (int) random(-1,1);
+    }*/
+    
   }
   abstract void display() ;
   abstract void move();
 }
 class simpleBall extends Ball {
-  int d = 1;
-  float cx = x;
-  float cy = y;
-  float r = random(3, 4);
-
   simpleBall(float x, float y, int xSize, int ySize) {
     super(x, y, xSize, ySize);
   }
   void display() {
-    stroke(224, 224, 224);
-    fill(224, 224, 224);
-    ellipse(x, y, 80, 10);
-    fill(255, 255, 255);
-    ellipse(x, y, 60, 10);
-    stroke(47, 63, 163);
-    fill(47, 63, 163);
-    circle(x, y, 50);
-    stroke(52, 72, 193);
-    fill(52, 72, 193);
-    circle(x, y, 40);
-    stroke(60, 110, 255);
-    fill(60, 110, 255);
-    circle(x, y, 30);
-    fill(70, 120, 255);
-    circle(x, y, 20);
-    fill(61, 80, 201);
-    circle(x-10, y+10, 5);
-    fill(150, 250, 255);
-    ellipse(x, y, 10, 5);
-    fill(56, 72, 202);
-    ellipse(x+4, y-3, 15, 6);
+    fill(c);
+    ellipse(x, y, xSize, ySize);
+    fill(255, 165, 0);
+    ellipse(x+10, y-15, 10, 10);
+    fill(255, 0, 0); 
+    ellipse(x - 13, y, 10, 10);
+    fill(0, 255, 0);
+    ellipse(x, y - 20, 10, 10);
+    fill(0, 192, 199);
+    ellipse(x, y, 10, 10);
+    fill(122, 192, 88);
+    ellipse(x, y+15, 10, 10);
+    fill(150, 150, 150);
+    ellipse(x-15, y-15, 10, 10);
+    fill(200, 32, 200);
+    ellipse(x+15, y+10, 10, 10);
+    fill(50, 0, 102);
+    ellipse(x-10, y+13, 10, 10);
+    fill(60, 120, 180);
+    ellipse(x+13, y, 10, 10);
   }
   void move() {
-    x+= xspeed * xDirection;
-    y+= yspeed * yDirection;
-    if (x > width || x <0) {
-      xDirection *= -1;
-      xspeed *= 1.2;
-    }
-    if (y > height || y < 0) {
-      yDirection *= -1;
-      yspeed *= 1.2;
-    }
+    x += xDirection * xspeed;
+    y += yDirection * yspeed;
+    if (x > width || x < 0) xDirection *= -1;
+    if (y > height || y < 0) yDirection *= -1;
   }
 }
-
 class circBall extends Ball {
+  float xSpeed = 2;
+  float ySpeed = 2;
   float xOfPoint=x;
   float yOfPoint=y; 
   circBall(float x, float y, int xSize, int ySize) {
     super(x, y, xSize, ySize);
+    
   }
   void display() {
     fill(c);
-    for ( Collideable co : ListOfCollideables) {
-      if (co!=this && co.isTouching(this)) 
-        fill(color(255,0,0));
-    }
     ellipse(x, y, xSize, ySize);
     fill(10, 255, 0); 
     rectMode(CENTER);
@@ -184,24 +175,18 @@ class circBall extends Ball {
     fill(70, 0, 70);
     square(x+10, y-15, 10);
   }
-
+  
   void move() {
-    xOfPoint += xspeed;
-    yOfPoint += yspeed;
-    float theta = atan (yspeed / xspeed);
-    if (xspeed < 0) theta += PI;
-    y = yOfPoint + 30*sin(xOfPoint/20) * sin(theta+radians(90)) ;
-    x = xOfPoint + 30*sin(xOfPoint/20) * cos(theta+radians(90)) ;
-
+    xOfPoint += xSpeed;
+    yOfPoint += ySpeed;
+    y = yOfPoint + 20*sin(xOfPoint) * sin(radians(45)+radians(90)) ;
+    x = xOfPoint + 20*sin(xOfPoint) * cos(radians(45)+radians(90)) ;
+    
     if (x + 25 >= width || x - 25 <= 0) {
-      xspeed *= -1;
-      xOfPoint += 3* xspeed;
-      yOfPoint+=3* yspeed;
+      xSpeed *= -1;
     }
     if (y + 25 >= height || y - 25<= 0) {
-      yspeed *= -1;
-      xOfPoint += 3* xspeed;
-      yOfPoint+=3* yspeed;
+      ySpeed *= -1;
     }
   }
 }
