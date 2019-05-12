@@ -147,29 +147,10 @@ class simpleBall extends Ball {
   }
 }
 class circBall extends Ball {
-  int d;
-  float xSpeed = 2;
-  float ySpeed = 2;
   float xOfPoint=x;
   float yOfPoint=y; 
   circBall(float x, float y, int xSize, int ySize) {
     super(x, y, xSize, ySize);
-    
-  }
-  void dDeter() {
-     if (xDirection == 0) {
-      if (yDirection == 1) d = 270;
-      if (yDirection == -1) d = 90;
-    }
-    else if (xDirection == 1) {
-      if (yDirection == 1) d = 315;
-      if (yDirection == 0) d = 0;
-      if (yDirection == -1) d = 45;
-    }
-    else {
-      if (yDirection == 1) d = 215;
-      if (yDirection == 0) d = 135;
-    }
   }
   void display() {
     fill(c);
@@ -182,16 +163,22 @@ class circBall extends Ball {
   }
   
   void move() {
-    xOfPoint += xSpeed;
-    yOfPoint += ySpeed;
-    y = yOfPoint + 40*sin(xOfPoint/30) * sin(radians(45)+radians(90)) ;
-    x = xOfPoint + 40*sin(xOfPoint/30) * cos(radians(45)+radians(90)) ;
+    xOfPoint += xspeed;
+    yOfPoint += yspeed;
+    float theta = atan (yspeed / xspeed);
+    if(xspeed < 0) theta += PI;
+    y = yOfPoint + 30*sin(xOfPoint/20) * sin(theta+radians(90)) ;
+    x = xOfPoint + 30*sin(xOfPoint/20) * cos(theta+radians(90)) ;
     
     if (x + 25 >= width || x - 25 <= 0) {
-      xSpeed *= -1;
+      xspeed *= -1;
+      xOfPoint += 3* xspeed;
+      yOfPoint+=3* yspeed;
     }
     if (y + 25 >= height || y - 25<= 0) {
-      ySpeed *= -1;
+      yspeed *= -1;
+      xOfPoint += 3* xspeed;
+      yOfPoint+=3* yspeed;
     }
   }
 }
