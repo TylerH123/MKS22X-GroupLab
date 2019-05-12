@@ -96,7 +96,7 @@ public class LivingRock extends Rock implements Moveable {
   }
 }
 
-class Ball extends Thing implements Moveable {
+abstract class Ball extends Thing implements Moveable {
   int xSize;
   int ySize;
   int randColorR, randColorG, randColorB; 
@@ -114,17 +114,8 @@ class Ball extends Thing implements Moveable {
     randColorB = (int)random(255);
     c = color(0, 0, 255);
   }
-
-  void display() {
-    fill(c);
-    ellipse(x, y, xSize, ySize);
-  }
-  void move() {
-    x += xspeed * xDirection; 
-    y += yspeed * yDirection;
-    if (x + 25 >= width || x - 25 <= 0) xDirection *= -1;
-    if (y + 25 >= height || y - 25<= 0) yDirection *= -1;
-  }
+  abstract void display() ;
+  abstract void move();
 }
 class simpleBall extends Ball {
   simpleBall(float x, float y, int xSize, int ySize) {
@@ -151,6 +142,8 @@ class simpleBall extends Ball {
     ellipse(x-10, y+13, 10, 10);
     fill(60, 120, 180);
     ellipse(x+13, y, 10, 10);
+  }
+  void move() {
   }
 }
 class circBall extends Ball {
