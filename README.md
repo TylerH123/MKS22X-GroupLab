@@ -1,5 +1,5 @@
 # MKS22X-GroupLab
-##### 5/06/19<br/><br/>
+**5/06/19**<br/><br/>
     **Caleb Kahan- Wrote the Rock class**- Methods Include-<br/>
         -Simple Display<br/>
         -Complex Display<br/>
@@ -15,7 +15,7 @@
         -elliptical motion (vertical and horizontal)<br/>
         -random motion in contained window (initial)<br/><br/>
 
-##### 5/07/19<br/><br/>
+**5/07/19**<br/><br/>
     **Caleb Kahan + Brandon Cho (joined today from absence)**<br/>
         -Rock Changes + Living Rock Changes (1+2+3)<br/>
     **Tyler Huang (driver) + Mohammad Jawwad (mapper)**<br/>
@@ -26,7 +26,7 @@
         - began work of bounce<br/>
     **Mihad was absent**<br/><br/>
 
-##### 5/08/19<br/><br/>
+**5/08/19**<br/><br/>
     **Tyler Huang + Mohammad Jawwad** (mostly Jawwad but Tyler was a nice advice giver)<br/>
       - bouncing causes direction change and a random bounce amount, as well as a radius change. However they tend to cluster at the lower right corner.<br/>
     **Brandon Chao**<br/>
@@ -34,7 +34,7 @@
       - Moved instance variable for pImage to Thing for all classes to inherit<br/>
       - Changed data images to be transparent in png files<br/><br/>
       
-##### 5/11/19<br/><br/>
+**5/11/19**<br/><br/>
     **Mohammad Jawwad And Caleb Kahan (motions)**<br/>
         - so jawwad' job is now motions overhaul with Caleb. We will be changing the ball complex motions so bounce doesn't look so 
         janky and clusters at a corner. Ported all repetitive motions of ball (circle/ellipse/vertical ellipse) to living rock, as they 
