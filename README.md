@@ -61,8 +61,9 @@
       -Brandon specifically: figured out why two images were shown for collision instead of 1
    **Caleb Kahan** <br />
       -also finding and reporting bugs to group<br />
-      -figured out how to avoid the clusters/ball escapes of gravitational based motion (speed motifiers). * *ALL MOTIONS ARE COMPLETE NOW!* * <br />
-      -fixing collision<br />
+      -figured out how to avoid the clusters/ball escapes of gravitational based motion (speed limits).<br />
+      * *ALL MOTIONS ARE COMPLETE NOW!* * <br />
+      -living rocks affect other living rocks and rocks. (a living rock and a rock are both collideable and both things... so they both would affect each other if touching. Same goes for two rocks that are too close to each other!)<br />
    
 
 
