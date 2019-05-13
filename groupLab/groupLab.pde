@@ -34,29 +34,18 @@ class Rock extends Thing implements Collideable {
     }
     float x1 = other.x;
     float y1 = other.y;
-    float distCenterX = abs(x1 - x);
+    float distCenter = sqrt(pow(abs(x1 - x), 2)+pow(abs(y1-y), 2));
     float distCenterY = abs(y1-y);
-    float minDistBetweenX=0;
-    float minDistBetweenY=0;
+    float minDistBetween=0;
+
 
     if (other instanceof simpleBall) {
-      minDistBetweenX = (img.width)/2.0 + ((Ball)other).xSize / 2.0;
-      minDistBetweenY = (img.height)/2.0 + ((Ball)other).ySize / 2.0;
     } else if ( other instanceof circBall) {
     } else if (other instanceof Rock) {
-      textSize(32);
-      stroke(255, 0, 0);
-      circle(((Rock)other).img.width+50, 100, img.width);
-      circle(50, 100, 50);
 
-      //minDistBetweenX = (img.width)/2.0 + ((Rock)other).img.width / 2.0;
-      //minDistBetweenY = (img.height)/2.0 + ((Rock)other).img.height / 2.0;
-      minDistBetweenX = 50;
-      minDistBetweenY = 50;
-
+      minDistBetween = (img.width)/2.0 + ((Rock)other).img.width / 2.0;
     }
-    if (distCenterX>minDistBetweenX && distCenterY > minDistBetweenY) return false;
-    circle(x,y,50);
+    if (distCenter>minDistBetween) return false;
     return true;
   }
 
