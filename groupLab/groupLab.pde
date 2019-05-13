@@ -35,7 +35,6 @@ class Rock extends Thing implements Collideable {
     float x1 = other.x;
     float y1 = other.y;
     float distCenter = sqrt(pow(abs(x1 - x), 2)+pow(abs(y1-y), 2));
-    float distCenterY = abs(y1-y);
     float minDistBetween=0;
 
 
@@ -106,8 +105,6 @@ class Rock extends Thing implements Collideable {
   }
 
   abstract class Ball extends Thing implements Moveable {
-    int xDirection = 1;
-    int yDirection = 1; 
     float xspeed = random(-2, 2);
     float yspeed = random(-2, 2); 
     Ball(float x, float y) {
@@ -197,11 +194,6 @@ class Rock extends Thing implements Collideable {
         fill(0, 0, 255);
         circle(x, y, 50);
       } else {
-        //fill(c);
-        /*for ( Collideable co : ListOfCollideables) {
-         if (co!=this && co.isTouching(this)) 
-         fill(color(255, 0, 0));
-         }*/
         stroke(255, 255, 106);
         fill(255, 225, 106);
         ellipse(x, y, 60, 10);
