@@ -29,7 +29,10 @@ class Rock extends Thing implements Collideable {
   }
 
   boolean isTouching(Thing other) {
-    //
+    if (other==this) {
+      circle(50, 50, 100);
+      return false;
+    }
     float x1 = other.x;
     float y1 = other.y;
     float distCenterX = abs(x1 - x);
@@ -52,14 +55,18 @@ class Rock extends Thing implements Collideable {
 
   void display() {
     imageMode(CENTER);
+    boolean touching=false;
     for ( Collideable c : ListOfCollideables) {
-      if (c!=this && c.isTouching(this)) 
-        image(colImg, x, y); 
-      else
-        image(img, x, y);
+      if (c.isTouching(this)) 
+        touching=true;
     }
+    if (touching==true)
+      image(colImg, x, y); 
+    else
+      image(img, x, y);
   }
 }
+
 
 public class LivingRock extends Rock implements Moveable {
   PImage eyeImg;
@@ -187,9 +194,9 @@ class circBall extends Ball {
   void display() {
     fill(c);
     /*for ( Collideable co : ListOfCollideables) {
-      if (co!=this && co.isTouching(this)) 
-        fill(color(255, 0, 0));
-    }*/
+     if (co!=this && co.isTouching(this)) 
+     fill(color(255, 0, 0));
+     }*/
     stroke(255, 255, 106);
     fill(255, 225, 106);
     ellipse(x, y, 60, 10);
@@ -241,6 +248,7 @@ ArrayList<Moveable> thingsToMove;
 ArrayList<Collideable> ListOfCollideables;
 
 void setup() {
+  //frameRate(20);
   imageMode(CENTER);
   PImage beauty = loadImage("beautyrock.png");
   beauty.resize(50, 50);
@@ -260,12 +268,12 @@ void setup() {
   for (int i = 0; i < 10; i++) {
     Ball b;
     /*if (i < 5) {
-      b = new simpleBall(50+random(width-100), 50+random(height-100), 50, 50 );
-    } else {
-      b = new circBall(50+random(width-100), 50 + random(height-100), 50, 50);
-    }
-    thingsToDisplay.add(b);
-    thingsToMove.add(b);*/
+     b = new simpleBall(50+random(width-100), 50+random(height-100), 50, 50 );
+     } else {
+     b = new circBall(50+random(width-100), 50 + random(height-100), 50, 50);
+     }
+     thingsToDisplay.add(b);
+     thingsToMove.add(b);*/
     int j =(int)(random(2));
     if (j==0) {
       p = beauty;
