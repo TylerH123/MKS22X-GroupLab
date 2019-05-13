@@ -248,9 +248,9 @@ void setup() {
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   ListOfCollideables = new ArrayList<Collideable>();
-  for (int i = 0; i < 10; i++) {
+  for (int i = 0; i < 19; i++) {
     Ball b;
-    if ((int)random(2) ==1) {
+    if (i < 10) {
       b = new simpleBall(50+random(width-100), 50+random(height-100), 50, 50 );
     } else {
       b = new circBall(50+random(width-100), 50 + random(height-100), 50, 50);
