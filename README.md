@@ -44,8 +44,25 @@
         - currently working on other subclass motion (attempted spiral movement failed, have a basic movement set up. Trying gravity
         based, though this clusters or eventually disappears off window)<br/>
         - Caleb wrote a meh collideable. There is a huge overhaul of bug fixes we will be doing tomorrow on this.<br/>
-    **Tyler Huang and Brandon Cho (display)**<br/>
-        - display changes: created 2 custom ball shapes. (Brandon did the planet like shape! such wow!, and Tyler did the infinity stone    ball!<br/>
+    **Brandon Cho (display)**<br/>
+        - display changes: created custom ball shape. (Brandon did the planet like shape! such wow!<br/><br/>
+        
+**5/12/19**<br /><br />
+   **Mohammad Jawwad** <br />
+      -bug changes/anything that doesn't comply with the group had to be reported to other members/ individually fixed.<br />
+      -explanations of collision/ figuring out how to show color change of custom balls.<br />
+      -helping with fixing collison<br />
+   **Mihad Kho** <br /> 
+      -custom ball shape other subclass based off infinity gauntlet.<br />
+      -image change assignments from jawwad<br />
+   **Tyler Huang / Brandon Cho** <br />
+      -bug assignments from Jawwad<br />
+      -image change assignments<br />
+   **Caleb Kahan** <br />
+      -also finding and reporting bugs to group<br />
+      -figured out how to avoid the clusters/ball escapes of gravitational based motion (speed motifiers). * *ALL MOTIONS ARE COMPLETE NOW!* * <br />
+      -fixing collision<br />
+   
 
 
 <br/><br/><br/>* *side note: Jawwad's been updating the README. Please send him hot cocoa for his efforts.* *
