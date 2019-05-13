@@ -104,8 +104,8 @@ abstract class Ball extends Thing implements Moveable {
   int xDirection = 1;
   int yDirection = 1; 
   color c; 
-  float xspeed = random(-2,2);
-  float yspeed = random(-2,2); 
+  float xspeed = random(-2, 2);
+  float yspeed = random(-2, 2); 
   Ball(float x, float y, int xSize, int ySize) {
     super(x, y);
     this.xSize = xSize;
@@ -152,10 +152,10 @@ class simpleBall extends Ball {
     ellipse(x+4, y-3, 15, 6);
   }
   void move() {
-    if(xspeed>50) xspeed =2;
-    if(xspeed<-50) xspeed =-2;
-    if(yspeed>50) yspeed =2;
-    if(yspeed<-50) yspeed = -2;
+    if (xspeed>50) xspeed =2;
+    if (xspeed<-50) xspeed =-2;
+    if (yspeed>50) yspeed =2;
+    if (yspeed<-50) yspeed = -2;
     xspeed += .5;
     yspeed += .5;
     x+= xspeed;
@@ -168,9 +168,9 @@ class simpleBall extends Ball {
       yspeed *= -1;
       y+=2*yspeed;
     }
-    }
   }
 }
+
 
 class circBall extends Ball {
   float xOfPoint=x;
