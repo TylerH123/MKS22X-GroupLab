@@ -139,11 +139,6 @@ abstract class Ball extends Thing implements Moveable {
   abstract void move();
 }
 class simpleBall extends Ball {
-  int d = 1;
-  float cx = x;
-  float cy = y;
-  float r = random(3, 4);
-
   simpleBall(float x, float y, int xSize, int ySize) {
     super(x, y, xSize, ySize);
   }
