@@ -76,4 +76,4 @@
 
 
 <br/><br/><br/>* *side note: Jawwad's been updating the README. Please send him hot cocoa for his efforts.* *<br />
-Mihad and Tyler take a while to respond... especially Mihad...
+Tea warning talk to Jawwad
