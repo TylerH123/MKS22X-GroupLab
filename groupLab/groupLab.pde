@@ -206,7 +206,7 @@ class circBall extends Ball {
       }
     }
     if (touching==true) {
-      fill(255, 0, 0);
+      fill(0, 0, 255);
       circle(x,y,50);
     }
     else {
