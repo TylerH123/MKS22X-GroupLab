@@ -52,6 +52,7 @@
       -bug changes/anything that doesn't comply with the group had to be reported to other members/ individually fixed.<br />
       -explanations of collision/ figuring out how to show color change of custom balls.<br />
       -helping with fixing collison<br />
+      -removed useless portions/files<br />
    **Mihad Kho** <br /> 
       -custom ball shape other subclass based off infinity gauntlet.<br />
       -image change assignments from jawwad<br />
