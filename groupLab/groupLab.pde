@@ -97,7 +97,7 @@ public class LivingRock extends Rock implements Moveable {
   void display() {
     imageMode(CENTER);
     super.display();
-    image(eyeImg, x-17, y-3);
+    image(eyeImg, x, y);
   }
 }
 
