@@ -92,24 +92,7 @@ public class LivingRock extends Rock implements Moveable {
     }
   }
   void display() {
-    stroke(255, 255, 106);
-    fill(255, 225, 106);
-    ellipse(x, y, 60, 10);
-    ellipse(x, y, 10, 60);
-    fill(255, 230, 145);
-    circle(x, y, 50);
-    fill(100, 255, 60);
-    circle(x-15, y, 10);
-    fill(255, 55, 40);
-    circle(x+15, y, 10);
-    fill(60, 220, 255);
-    circle(x-10, y-10, 10);
-    fill(255, 70, 210);
-    circle(x+10, y-10, 10);
-    fill(255, 160, 60);
-    circle(x, y-15, 10);
-    fill(255, 250, 60);
-    circle(x, y, 15);
+    super.display();
     image(eyeImg, x-17, y-3);
   }
 }
@@ -169,15 +152,17 @@ class simpleBall extends Ball {
     ellipse(x+4, y-3, 15, 6);
   }
   void move() {
-    x+= xspeed * xDirection;
-    y+= yspeed * yDirection;
-    if (x > width || x <0) {
-      xDirection *= -1;
-      xspeed *= 1.02;
+    xspeed += .98;
+    yspeed += .98;
+    x+= xspeed;
+    y+= yspeed;
+    if (x > width-25 || x < 25) {
+      xspeed *= -1;
+      x+= 5*xspeed;
     }
-    if (y > height || y < 0) {
-      yDirection *= -1;
-      yspeed *= 1.02;
+    if (y > height-25 || y < 25) {
+      yspeed *= -1;
+      y+= 5*yspeed;
     }
   }
 }
@@ -194,12 +179,24 @@ class circBall extends Ball {
       if (co!=this && co.isTouching(this)) 
         fill(color(255, 0, 0));
     }
-    ellipse(x, y, xSize, ySize);
-    fill(10, 255, 0); 
-    rectMode(CENTER);
-    square(x, y, 10);
-    fill(70, 0, 70);
-    square(x+10, y-15, 10);
+    stroke(255, 255, 106);
+    fill(255, 225, 106);
+    ellipse(x, y, 60, 10);
+    ellipse(x, y, 10, 60);
+    fill(255, 230, 145);
+    circle(x, y, 50);
+    fill(100, 255, 60);
+    circle(x-15, y, 10);
+    fill(255, 55, 40);
+    circle(x+15, y, 10);
+    fill(60, 220, 255);
+    circle(x-10, y-10, 10);
+    fill(255, 70, 210);
+    circle(x+10, y-10, 10);
+    fill(255, 160, 60);
+    circle(x, y-15, 10);
+    fill(255, 250, 60);
+    circle(x, y, 15);
   }
 
   void move() {
@@ -233,6 +230,7 @@ ArrayList<Moveable> thingsToMove;
 ArrayList<Collideable> ListOfCollideables;
 
 void setup() {
+  imageMode(CENTER);
   PImage beauty = loadImage("beautyrock.png");
   beauty.resize(50, 50);
   PImage ugly = loadImage("uglyrock.png");
