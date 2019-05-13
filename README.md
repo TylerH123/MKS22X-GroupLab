@@ -79,4 +79,3 @@
 Tea warning: 
 >! Mihad and Tyler take a while to respond... especially Mihad...
 >! There were multiple occasions where certain members... got rage crazy and needed to cool off(CK)
->
