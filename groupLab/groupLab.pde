@@ -139,30 +139,34 @@ class simpleBall extends Ball {
         break;
       }
     }
-    if (touching==true)
+    if (touching==true) {
       fill(255, 0, 0);
-    stroke(224, 224, 224);
-    fill(224, 224, 224);
-    ellipse(x, y, 80, 10);
-    fill(255, 255, 255);
-    ellipse(x, y, 60, 10);
-    stroke(47, 63, 163);
-    fill(47, 63, 163);
-    circle(x, y, 50);
-    stroke(52, 72, 193);
-    fill(52, 72, 193);
-    circle(x, y, 40);
-    stroke(60, 110, 255);
-    fill(60, 110, 255);
-    circle(x, y, 30);
-    fill(70, 120, 255);
-    circle(x, y, 20);
-    fill(61, 80, 201);
-    circle(x-10, y+10, 5);
-    fill(150, 250, 255);
-    ellipse(x, y, 10, 5);
-    fill(56, 72, 202);
-    ellipse(x+4, y-3, 15, 6);
+      circle(x,y,50);
+    }
+    else {
+      stroke(224, 224, 224);
+      fill(224, 224, 224);
+      ellipse(x, y, 80, 10);
+      fill(255, 255, 255);
+      ellipse(x, y, 60, 10);
+      stroke(47, 63, 163);
+      fill(47, 63, 163);
+      circle(x, y, 50);
+      stroke(52, 72, 193);
+      fill(52, 72, 193);
+      circle(x, y, 40);
+      stroke(60, 110, 255);
+      fill(60, 110, 255);
+      circle(x, y, 30);
+      fill(70, 120, 255);
+      circle(x, y, 20);
+      fill(61, 80, 201);
+      circle(x-10, y+10, 5);
+      fill(150, 250, 255);
+      ellipse(x, y, 10, 5);
+      fill(56, 72, 202);
+      ellipse(x+4, y-3, 15, 6);
+    }
   }
   void move() {
     if (xspeed>50) xspeed =2;
@@ -194,29 +198,42 @@ class circBall extends Ball {
     amp = (int)random(10, 30);
   }
   void display() {
-    fill(c);
-    /*for ( Collideable co : ListOfCollideables) {
-     if (co!=this && co.isTouching(this)) 
-     fill(color(255, 0, 0));
-     }*/
-    stroke(255, 255, 106);
-    fill(255, 225, 106);
-    ellipse(x, y, 60, 10);
-    ellipse(x, y, 10, 60);
-    fill(255, 230, 145);
-    circle(x, y, 50);
-    fill(100, 255, 60);
-    circle(x-15, y, 10);
-    fill(255, 55, 40);
-    circle(x+15, y, 10);
-    fill(60, 220, 255);
-    circle(x-10, y-10, 10);
-    fill(255, 70, 210);
-    circle(x+10, y-10, 10);
-    fill(255, 160, 60);
-    circle(x, y-15, 10);
-    fill(255, 250, 60);
-    circle(x, y, 15);
+    boolean touching = false;
+    for ( Collideable c : ListOfCollideables) {
+      if (c.isTouching(this)) {
+        touching=true;
+        break;
+      }
+    }
+    if (touching==true) {
+      fill(255, 0, 0);
+      circle(x,y,50);
+    }
+    else {
+      fill(c);
+      /*for ( Collideable co : ListOfCollideables) {
+       if (co!=this && co.isTouching(this)) 
+       fill(color(255, 0, 0));
+       }*/
+      stroke(255, 255, 106);
+      fill(255, 225, 106);
+      ellipse(x, y, 60, 10);
+      ellipse(x, y, 10, 60);
+      fill(255, 230, 145);
+      circle(x, y, 50);
+      fill(100, 255, 60);
+      circle(x-15, y, 10);
+      fill(255, 55, 40);
+      circle(x+15, y, 10);
+      fill(60, 220, 255);
+      circle(x-10, y-10, 10);
+      fill(255, 70, 210);
+      circle(x+10, y-10, 10);
+      fill(255, 160, 60);
+      circle(x, y-15, 10);
+      fill(255, 250, 60);
+      circle(x, y, 15);
+    }
   }
 
   void move() {
@@ -269,13 +286,13 @@ void setup() {
   ListOfCollideables = new ArrayList<Collideable>();
   for (int i = 0; i < 10; i++) {
     Ball b;
-    /*if (i < 5) {
+    if (i < 5) {
      b = new simpleBall(50+random(width-100), 50+random(height-100), 50, 50 );
      } else {
      b = new circBall(50+random(width-100), 50 + random(height-100), 50, 50);
      }
      thingsToDisplay.add(b);
-     thingsToMove.add(b);*/
+     thingsToMove.add(b);
     int j =(int)(random(2));
     if (j==0) {
       p = beauty;
