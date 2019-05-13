@@ -191,7 +191,7 @@ class Rock extends Thing implements Collideable {
         }
       }
       if (touching==true) {
-        fill(0, 0, 255);
+        fill(0,255,0);
         circle(x, y, 50);
       } else {
         stroke(255, 255, 106);
