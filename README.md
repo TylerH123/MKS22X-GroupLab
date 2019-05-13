@@ -60,6 +60,7 @@
       -bug assignments from Jawwad<br />
       -image change assignments<br />
       -Brandon specifically: figured out why two images were shown for collision instead of 1 <br />
+      -Brandon specifically: ball collision changes <br />
    **Caleb Kahan** <br />
       -also finding and reporting bugs to group<br />
       -figured out how to avoid the clusters/ball escapes of gravitational based motion (speed limits). Gravity bouncing stuff in         general<br />
