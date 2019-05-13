@@ -40,15 +40,23 @@ class Rock extends Thing implements Collideable {
     float minDistBetweenY=0;
 
     if (other instanceof simpleBall) {
-
       minDistBetweenX = (img.width)/2.0 + ((Ball)other).xSize / 2.0;
       minDistBetweenY = (img.height)/2.0 + ((Ball)other).ySize / 2.0;
     } else if ( other instanceof circBall) {
     } else if (other instanceof Rock) {
-      minDistBetweenX = (img.width)/2.0 + ((Rock)other).img.width / 2.0;
-      minDistBetweenY = (img.height)/2.0 + ((Rock)other).img.height / 2.0;
+      textSize(32);
+      stroke(255, 0, 0);
+      circle(((Rock)other).img.width+50, 100, img.width);
+      circle(50, 100, 50);
+
+      //minDistBetweenX = (img.width)/2.0 + ((Rock)other).img.width / 2.0;
+      //minDistBetweenY = (img.height)/2.0 + ((Rock)other).img.height / 2.0;
+      minDistBetweenX = 50;
+      minDistBetweenY = 50;
+
     }
     if (distCenterX>minDistBetweenX && distCenterY > minDistBetweenY) return false;
+    circle(x,y,50);
     return true;
   }
 
@@ -56,8 +64,10 @@ class Rock extends Thing implements Collideable {
     imageMode(CENTER);
     boolean touching=false;
     for ( Collideable c : ListOfCollideables) {
-      if (c.isTouching(this)) 
+      if (c.isTouching(this)) {
         touching=true;
+        break;
+      }
     }
     if (touching==true)
       image(colImg, x, y); 
@@ -258,7 +268,7 @@ void setup() {
   size(1000, 800);
   PImage p;
   PImage poke = loadImage("pokeball.png"); 
-  PImage explosive = loadImage("fireRock.png");
+  PImage explosive = loadImage("roundie.jpg");
   explosive.resize(50, 50);
   poke.resize(50, 50);
   thingsToDisplay = new ArrayList<Displayable>();
