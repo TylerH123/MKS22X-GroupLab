@@ -58,7 +58,7 @@
    **Tyler Huang / Brandon Chao** <br />
       -bug assignments from Jawwad<br />
       -image change assignments<br />
-      -Brandon specifically: figured out why two images were shown for collision instead of 1
+      -Brandon specifically: figured out why two images were shown for collision instead of 1 <br />
    **Caleb Kahan** <br />
       -also finding and reporting bugs to group<br />
       -figured out how to avoid the clusters/ball escapes of gravitational based motion (speed limits).<br />
