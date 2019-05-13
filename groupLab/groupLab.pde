@@ -106,29 +106,19 @@ class Rock extends Thing implements Collideable {
   }
 
   abstract class Ball extends Thing implements Moveable {
-    int xSize;
-    int ySize;
-    int randColorR, randColorG, randColorB; 
     int xDirection = 1;
     int yDirection = 1; 
-    color c; 
     float xspeed = random(-2, 2);
     float yspeed = random(-2, 2); 
-    Ball(float x, float y, int xSize, int ySize) {
+    Ball(float x, float y) {
       super(x, y);
-      this.xSize = xSize;
-      this.ySize = ySize;
-      randColorR = (int)random(255);
-      randColorG = (int)random(255);
-      randColorB = (int)random(255);
-      c = color(randColorR, randColorG, randColorB); //stored random color
     }
     abstract void display() ;
     abstract void move();
   }
   class simpleBall extends Ball {
-    simpleBall(float x, float y, int xSize, int ySize) {
-      super(x, y, xSize, ySize);
+    simpleBall(float x, float y) {
+      super(x, y);
     }
     void display() {
       boolean touching = false;
@@ -191,8 +181,8 @@ class Rock extends Thing implements Collideable {
     float xOfPoint=x;
     float yOfPoint=y; 
     int amp;
-    circBall(float x, float y, int xSize, int ySize) {
-      super(x, y, xSize, ySize);
+    circBall(float x, float y) {
+      super(x, y);
       amp = (int)random(10, 30);
     }
     void display() {
@@ -207,7 +197,7 @@ class Rock extends Thing implements Collideable {
         fill(0, 0, 255);
         circle(x, y, 50);
       } else {
-        fill(c);
+        //fill(c);
         /*for ( Collideable co : ListOfCollideables) {
          if (co!=this && co.isTouching(this)) 
          fill(color(255, 0, 0));
@@ -282,9 +272,9 @@ class Rock extends Thing implements Collideable {
     for (int i = 0; i < 10; i++) {
       Ball b;
       if (i < 5) {
-        b = new simpleBall(50+random(width-100), 50+random(height-100), 50, 50 );
+        b = new simpleBall(50+random(width-100), 50+random(height-100));
       } else {
-        b = new circBall(50+random(width-100), 50 + random(height-100), 50, 50);
+        b = new circBall(50+random(width-100), 50 + random(height-100));
       }
       thingsToDisplay.add(b);
       thingsToMove.add(b);
