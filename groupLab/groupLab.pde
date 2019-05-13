@@ -224,12 +224,12 @@ class Rock extends Thing implements Collideable {
       x = xOfPoint + amp*sin(xOfPoint/20) * cos(theta+radians(90)) ;
 
       if (x + 25 >= width || x - 25 <= 0) {
-        xspeed *= -1;
+        xspeed *= random(-1.25,-.75);
         xOfPoint += 3* xspeed;
         yOfPoint+=3* yspeed;
       }
       if (y + 25 >= height || y - 25<= 0) {
-        yspeed *= -1;
+        yspeed *= random(-1.25,-.75);
         xOfPoint += 3* xspeed;
         yOfPoint+=3* yspeed;
       }
@@ -261,9 +261,9 @@ class Rock extends Thing implements Collideable {
     thingsToDisplay = new ArrayList<Displayable>();
     thingsToMove = new ArrayList<Moveable>();
     ListOfCollideables = new ArrayList<Collideable>();
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 16; i++) {
       Ball b;
-      if (i < 5) {
+      if (i < 8) {
         b = new simpleBall(50+random(width-100), 50+random(height-100));
       } else {
         b = new circBall(50+random(width-100), 50 + random(height-100));
@@ -278,7 +278,7 @@ class Rock extends Thing implements Collideable {
       thingsToDisplay.add(r);
       ListOfCollideables.add(r);
     }
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 8; i++) {
       int j =(int)(random(2));
       if (j==0) {
         p = beauty;
