@@ -113,7 +113,7 @@ abstract class Ball extends Thing implements Moveable {
     randColorR = (int)random(255);
     randColorG = (int)random(255);
     randColorB = (int)random(255);
-    c = color(0, 0, 255);
+    c = color(randColorR, randColorG, randColorB); //stored random color
   }
   abstract void display() ;
   abstract void move();
@@ -152,10 +152,12 @@ class simpleBall extends Ball {
     ellipse(x+4, y-3, 15, 6);
   }
   void move() {
+    /*int t = millis()/1000;
+    if (t % 10 == 1) d*= -1;
     xspeed += .98;
     yspeed += .98;
-    x+= xspeed;
-    y+= yspeed;
+    x+= xspeed*d;
+    y+= yspeed*d;
     if (x > width-25 || x < 25) {
       xspeed *= -1;
       x+= 5*xspeed;
@@ -163,6 +165,16 @@ class simpleBall extends Ball {
     if (y > height-25 || y < 25) {
       yspeed *= -1;
       y+= 5*yspeed;
+    }*/
+    x+= xspeed * xDirection;
+    y+= yspeed * yDirection;
+    if (x > width -25 || x < 25) {
+      xDirection *= -1;
+      xspeed *= 1.02;
+    }
+    if (y > height -25 || y < 25) {
+      yDirection *= -1;
+      yspeed *= 1.02;
     }
   }
 }
@@ -170,8 +182,10 @@ class simpleBall extends Ball {
 class circBall extends Ball {
   float xOfPoint=x;
   float yOfPoint=y; 
+  int amp;
   circBall(float x, float y, int xSize, int ySize) {
     super(x, y, xSize, ySize);
+    amp = (int)random(10, 30);
   }
   void display() {
     fill(c);
@@ -204,8 +218,8 @@ class circBall extends Ball {
     yOfPoint += yspeed;
     float theta = atan (yspeed / xspeed);
     if (xspeed < 0) theta += PI;
-    y = yOfPoint + 30*sin(xOfPoint/20) * sin(theta+radians(90)) ;
-    x = xOfPoint + 30*sin(xOfPoint/20) * cos(theta+radians(90)) ;
+    y = yOfPoint + amp*sin(xOfPoint/20) * sin(theta+radians(90)) ;
+    x = xOfPoint + amp*sin(xOfPoint/20) * cos(theta+radians(90)) ;
 
     if (x + 25 >= width || x - 25 <= 0) {
       xspeed *= -1;
