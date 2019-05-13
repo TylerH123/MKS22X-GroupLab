@@ -37,9 +37,11 @@ class Rock extends Thing implements Collideable {
     float minDistBetweenX=0;
     float minDistBetweenY=0;
 
-    if (other instanceof Ball) {
+    if (other instanceof simpleBall) {
+
       minDistBetweenX = (img.width)/2.0 + ((Ball)other).xSize / 2.0;
       minDistBetweenY = (img.height)/2.0 + ((Ball)other).ySize / 2.0;
+    } else if ( other instanceof circBall) {
     } else if (other instanceof Rock) {
       minDistBetweenX = (img.width)/2.0 + ((Rock)other).img.width / 2.0;
       minDistBetweenY = (img.height)/2.0 + ((Rock)other).img.height / 2.0;
@@ -49,6 +51,7 @@ class Rock extends Thing implements Collideable {
   }
 
   void display() {
+    imageMode(CENTER);
     for ( Collideable c : ListOfCollideables) {
       if (c!=this && c.isTouching(this)) 
         image(colImg, x, y); 
@@ -92,6 +95,7 @@ public class LivingRock extends Rock implements Moveable {
     }
   }
   void display() {
+    imageMode(CENTER);
     super.display();
     image(eyeImg, x-17, y-3);
   }
@@ -182,10 +186,10 @@ class circBall extends Ball {
   }
   void display() {
     fill(c);
-    for ( Collideable co : ListOfCollideables) {
+    /*for ( Collideable co : ListOfCollideables) {
       if (co!=this && co.isTouching(this)) 
         fill(color(255, 0, 0));
-    }
+    }*/
     stroke(255, 255, 106);
     fill(255, 225, 106);
     ellipse(x, y, 60, 10);
@@ -253,15 +257,15 @@ void setup() {
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   ListOfCollideables = new ArrayList<Collideable>();
-  for (int i = 0; i < 19; i++) {
+  for (int i = 0; i < 10; i++) {
     Ball b;
-    if (i < 10) {
+    /*if (i < 5) {
       b = new simpleBall(50+random(width-100), 50+random(height-100), 50, 50 );
     } else {
       b = new circBall(50+random(width-100), 50 + random(height-100), 50, 50);
     }
     thingsToDisplay.add(b);
-    thingsToMove.add(b);
+    thingsToMove.add(b);*/
     int j =(int)(random(2));
     if (j==0) {
       p = beauty;
