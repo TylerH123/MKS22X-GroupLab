@@ -132,6 +132,15 @@ class simpleBall extends Ball {
     super(x, y, xSize, ySize);
   }
   void display() {
+    boolean touching = false;
+    for ( Collideable c : ListOfCollideables) {
+      if (c.isTouching(this)) {
+        touching=true;
+        break;
+      }
+    }
+    if (touching==true)
+      fill(255, 0, 0);
     stroke(224, 224, 224);
     fill(224, 224, 224);
     ellipse(x, y, 80, 10);
