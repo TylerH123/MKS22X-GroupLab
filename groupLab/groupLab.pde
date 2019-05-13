@@ -39,10 +39,10 @@ class Rock extends Thing implements Collideable {
     float minDistBetween=0;
 
 
-    if (other instanceof simpleBall) {
-    } else if ( other instanceof circBall) {
+    if (other instanceof Ball) {
+        minDistBetween = (img.width)/2.0 + 25;
+    }
     } else if (other instanceof Rock) {
-
       minDistBetween = (img.width)/2.0 + ((Rock)other).img.width / 2.0;
     }
     if (distCenter>minDistBetween) return false;
