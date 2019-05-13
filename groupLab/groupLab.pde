@@ -277,10 +277,8 @@ void setup() {
   eyes.resize(35, 35);
   size(1000, 800);
   PImage p;
-  PImage poke = loadImage("pokeball.png"); 
   PImage explosive = loadImage("roundie.jpg");
   explosive.resize(50, 50);
-  poke.resize(50, 50);
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   ListOfCollideables = new ArrayList<Collideable>();
