@@ -76,4 +76,7 @@
 
 
 <br/><br/><br/>* *side note: Jawwad's been updating the README. Please send him hot cocoa for his efforts.* *<br />
-Mihad and Tyler take a while to respond... especially Mihad...
+Tea warning: 
+>!Mihad and Tyler take a while to respond... especially Mihad...
+>!There were multiple occasions where certain members... got rage crazy and needed to cool off(CK)
+>
