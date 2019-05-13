@@ -16,7 +16,7 @@
         -random motion in contained window (initial)<br/><br/>
 
 **5/07/19**<br/><br/>
-    **Caleb Kahan + Brandon Cho (joined today from absence)**<br/>
+    **Caleb Kahan + Brandon Chao (joined today from absence)**<br/>
         -Rock Changes + Living Rock Changes (1+2+3)<br/>
     **Tyler Huang (driver) + Mohammad Jawwad (mapper)**<br/>
         -reviewed and edited bugs<br/>
@@ -55,7 +55,7 @@
    **Mihad Kho** <br /> 
       -custom ball shape other subclass based off infinity gauntlet.<br />
       -image change assignments from jawwad<br />
-   **Tyler Huang / Brandon Cho** <br />
+   **Tyler Huang / Brandon Chao** <br />
       -bug assignments from Jawwad<br />
       -image change assignments<br />
       -Brandon specifically: figured out why two images were shown for collision instead of 1
