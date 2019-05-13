@@ -27,9 +27,9 @@
     **Mihad was absent**<br/><br/>
 
 **5/08/19**<br/><br/>
-    **Tyler Huang + Mohammad Jawwad** (mostly Jawwad but Tyler was a nice advice giver)<br/>
+    **Tyler Huang and Mohammad Jawwad** (mostly Jawwad but Tyler was a nice advice giver)<br/>
       - bouncing causes direction change and a random bounce amount, as well as a radius change. However they tend to cluster at the lower right corner.<br/>
-    **Brandon Chao**<br/>
+    **Brandon Chao and Caleb Kahan**<br/>
       - Helped start collideable with Caleb<br/>
       - Moved instance variable for pImage to Thing for all classes to inherit<br/>
       - Changed data images to be transparent in png files<br/><br/>
