@@ -53,6 +53,7 @@
       -explanations of collision/ figuring out how to show color change of custom balls.<br />
       -helping with fixing collison<br />
       -removed useless portions/files<br />
+      -final polishing <br />
    **Mihad Kho** <br /> 
       -custom ball shape other subclass based off infinity gauntlet.<br />
       -image change assignments from jawwad<br />
@@ -68,9 +69,11 @@
       -living rocks affect other living rocks and rocks. (a living rock and a rock are both collideable and both things... so they both would affect each other if touching. Same goes for two rocks that are too close to each other!)<br />
       -Fixed Distance Formula- to d= difference in x squared + difference in y squared<br />
       -new image for exploding rock <br />
+      -final polishing with Jawwad <br />
       
       
    
 
 
-<br/><br/><br/>* *side note: Jawwad's been updating the README. Please send him hot cocoa for his efforts.* *
+<br/><br/><br/>* *side note: Jawwad's been updating the README. Please send him hot cocoa for his efforts.* *<br />
+Mihad and Tyler take a while to respond... especially Mihad...
