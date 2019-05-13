@@ -224,12 +224,12 @@ class Rock extends Thing implements Collideable {
       x = xOfPoint + amp*sin(xOfPoint/20) * cos(theta+radians(90)) ;
 
       if (x + 25 >= width || x - 25 <= 0) {
-        xspeed *= -1;
+        xspeed *= random(-1.25,-.75);
         xOfPoint += 3* xspeed;
         yOfPoint+=3* yspeed;
       }
       if (y + 25 >= height || y - 25<= 0) {
-        yspeed *= -1;
+        yspeed *= random(-1.25,-.75);
         xOfPoint += 3* xspeed;
         yOfPoint+=3* yspeed;
       }
