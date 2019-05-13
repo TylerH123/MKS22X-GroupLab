@@ -171,6 +171,7 @@ class simpleBall extends Ball {
   }
 }
 
+
 class circBall extends Ball {
   float xOfPoint=x;
   float yOfPoint=y; 
