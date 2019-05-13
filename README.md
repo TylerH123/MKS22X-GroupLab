@@ -27,9 +27,9 @@
     **Mihad was absent**<br/><br/>
 
 **5/08/19**<br/><br/>
-    **Tyler Huang + Mohammad Jawwad** (mostly Jawwad but Tyler was a nice advice giver)<br/>
+    **Tyler Huang and Mohammad Jawwad** (mostly Jawwad but Tyler was a nice advice giver)<br/>
       - bouncing causes direction change and a random bounce amount, as well as a radius change. However they tend to cluster at the lower right corner.<br/>
-    **Brandon Chao**<br/>
+    **Brandon Chao and Caleb Kahan**<br/>
       - Helped start collideable with Caleb<br/>
       - Moved instance variable for pImage to Thing for all classes to inherit<br/>
       - Changed data images to be transparent in png files<br/><br/>
@@ -52,18 +52,23 @@
       -bug changes/anything that doesn't comply with the group had to be reported to other members/ individually fixed.<br />
       -explanations of collision/ figuring out how to show color change of custom balls.<br />
       -helping with fixing collison<br />
+      -removed useless portions/files<br />
    **Mihad Kho** <br /> 
       -custom ball shape other subclass based off infinity gauntlet.<br />
       -image change assignments from jawwad<br />
    **Tyler Huang / Brandon Chao** <br />
       -bug assignments from Jawwad<br />
       -image change assignments<br />
-      -Brandon specifically: figured out why two images were shown for collision instead of 1
+      -Brandon specifically: figured out why two images were shown for collision instead of 1 <br />
    **Caleb Kahan** <br />
       -also finding and reporting bugs to group<br />
-      -figured out how to avoid the clusters/ball escapes of gravitational based motion (speed limits).<br />
+      -figured out how to avoid the clusters/ball escapes of gravitational based motion (speed limits). Gravity bouncing stuff in         general<br />
       * *ALL MOTIONS ARE COMPLETE NOW!* * <br />
       -living rocks affect other living rocks and rocks. (a living rock and a rock are both collideable and both things... so they both would affect each other if touching. Same goes for two rocks that are too close to each other!)<br />
+      -Fixed Distance Formula- to d= difference in x squared + difference in y squared<br />
+      -new image for exploding rock <br />
+      
+      
    
 
 
