@@ -261,9 +261,9 @@ class Rock extends Thing implements Collideable {
     thingsToDisplay = new ArrayList<Displayable>();
     thingsToMove = new ArrayList<Moveable>();
     ListOfCollideables = new ArrayList<Collideable>();
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 16; i++) {
       Ball b;
-      if (i < 5) {
+      if (i < 8) {
         b = new simpleBall(50+random(width-100), 50+random(height-100));
       } else {
         b = new circBall(50+random(width-100), 50 + random(height-100));
@@ -278,7 +278,7 @@ class Rock extends Thing implements Collideable {
       thingsToDisplay.add(r);
       ListOfCollideables.add(r);
     }
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 8; i++) {
       int j =(int)(random(2));
       if (j==0) {
         p = beauty;
